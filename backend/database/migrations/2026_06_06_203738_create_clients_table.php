@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('contacto_correo');
             $table->integer('porcentaje_oferta')->nullable();
             $table->timestamps();
+            //agrega columna deleted_at manipulado por Laravel
+            $table->softDeletes();
         });
     }
 
