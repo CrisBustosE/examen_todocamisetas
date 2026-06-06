@@ -24,6 +24,7 @@ return new class extends Migration
             $table->text('detalles')->nullable();
             $table->string('codigo_producto')->unique();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
