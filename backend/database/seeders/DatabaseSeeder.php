@@ -13,11 +13,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        // Seedeo de tallas cómunes de la industria: 'XS', 'S', 'M', 'L', 'XL', 'XXL', 'Única'.
+        $this->call([
+            SizeSeeder::class,
         ]);
     }
 }

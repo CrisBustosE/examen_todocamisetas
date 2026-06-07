@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\HealthController;
 use App\Http\Controllers\ShirtController;
+use App\Http\Controllers\SizeController;
 
 // Rutas para la API
 Route::prefix('v1')->group(function () {
@@ -24,4 +25,7 @@ Route::prefix('v1')->group(function () {
 
     // En caso de querer rerstaurar camisetas con SoftDelete
     //Route::patch('shirts/{id}/restore', [ShirtController::class, 'restore']);
+
+    // ======== Tallas ======== //
+    Route::apiResource('sizes', SizeController::class);
 });
