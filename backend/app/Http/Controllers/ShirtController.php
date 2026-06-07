@@ -27,19 +27,56 @@ class ShirtController extends Controller
         DB::beginTransaction();
         try {
             $validated = $request->validate([
-                'cliente_id' => 'required|exists:clients,id',
-                'titulo' => 'required|string|max:255',
-                'club' => 'required|string|max:255',
-                'pais' => 'required|string|max:255',
-                'tipo' => 'required|string|max:255',
-                'color' => 'required|string|max:255',
-                'precio' => 'required|integer|min:0',
-                'precio_oferta' => 'nullable|integer|min:0',
-                'detalles' => 'nullable|string',
-                'codigo_producto' => 'required|string|unique:shirts,codigo_producto|max:50',
-                'sizes_ids' => 'required|array', // Exigimos un array de IDs de tallas
-                'sizes_ids.*' => 'exists:sizes,id'
+                'cliente_id'      => 'required|exists:clients,id',
+                'titulo'          => 'required|string|max:255',
+                'club'            => 'required|string|max:255',
+                'pais'            => 'required|string|max:255',
+                'tipo'            => 'required|string|max:255',
+                'color'           => 'required|string|max:255',
+                'precio'          => 'required|integer|min:0',
+                'precio_oferta'   => 'nullable|integer|min:0',
+                'detalles'        => 'nullable|string',
+                'codigo_producto' => 'required|string|max:50|unique:shirts,codigo_producto,NULL,id,deleted_at,NULL',
+                'sizes_ids'       => 'required|array',
+                'sizes_ids.*'     => 'exists:sizes,id'
+            ], [
+                'cliente_id.required'          => 'El cliente es obligatorio.',
+                'cliente_id.exists'            => 'El cliente especificado no existe.',
+                'titulo.required'              => 'El título de la camiseta es obligatorio.',
+                'titulo.max'                   => 'El título no puede superar los 255 caracteres.',
+                'club.required'                => 'El club es obligatorio.',
+                'pais.required'                => 'El país de origen es obligatorio.',
+                'tipo.required'                => 'El tipo de camiseta es obligatorio.',
+                'color.required'               => 'El color es obligatorio.',
+                'precio.required'              => 'El precio es obligatorio.',
+                'precio.integer'               => 'El precio debe ser un número entero.',
+                'precio.min'                   => 'El precio no puede ser negativo.',
+                'precio_oferta.integer'        => 'El precio de oferta debe ser un número entero.',
+                'precio_oferta.min'            => 'El precio de oferta no puede ser negativo.',
+                'codigo_producto.required'     => 'El código de producto es obligatorio.',
+                'codigo_producto.unique'       => 'Este código de producto ya está registrado.',
+                'codigo_producto.max'          => 'El código de producto no puede superar los 50 caracteres.',
+                'sizes_ids.required'           => 'Debe seleccionar al menos una talla.',
+                'sizes_ids.array'              => 'Las tallas deben enviarse como un arreglo.',
+                'sizes_ids.*.exists'           => 'Una o más tallas seleccionadas no existen.',
             ]);
+
+            // Verificar si existe como soft deleted y restaurar
+            $existing = Shirt::onlyTrashed()->where('codigo_producto', $validated['codigo_producto'])->first();
+
+            if ($existing) {
+                $existing->restore();
+                $existing->update(collect($validated)->except(['codigo_producto', 'sizes_ids'])->toArray());
+                if (isset($validated['sizes_ids'])) {
+                    $existing->sizes()->sync($validated['sizes_ids']);
+                }
+                DB::commit();
+                return response()->json([
+                    'success' => true,
+                    'data'    => $existing->load('sizes'),
+                    'message' => 'Camiseta restaurada y actualizada exitosamente.'
+                ], 200);
+            }
 
             // Creamos la camiseta (excluyendo el array de tallas del request masivo)
             $shirt = Shirt::create(collect($validated)->except('sizes_ids')->toArray());

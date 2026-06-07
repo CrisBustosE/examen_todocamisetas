@@ -33,22 +33,45 @@ class ClientController extends Controller
         try {
             $validated = $request->validate([
                 'nombre_comercial' => 'required|string|max:255',
-                'rut' => 'required|string|unique:clients,rut|max:20',
-                'direccion' => 'required|string|max:255',
-                'categoria' => 'required|in:Regular,Preferencial',
-                'contacto_nombre' => 'required|string|max:255',
-                'contacto_correo' => 'required|email|max:255',
+                'rut'               => 'required|string|max:20|unique:clients,rut,NULL,id,deleted_at,NULL',
+                'direccion'        => 'required|string|max:255',
+                'categoria'        => 'required|in:Regular,Preferencial',
+                'contacto_nombre'  => 'required|string|max:255',
+                'contacto_correo'  => 'required|email|max:255',
                 'porcentaje_oferta' => 'nullable|integer|min:0|max:100',
-            ],[
-                // Mensajes personalizados
-                'nombre_comercial.required' => 'El nombre del cliente es obligatorio.',
-                'rut.required' => 'El RUT es obligatorio.',
-                'rut.unique' => 'Este RUT ya está registrado.',
-                'direccion.required' => 'La dirección es obligatoria.',
-                'categoria.required' => 'La categoria es obligatoria.',
-                'contacto_nombre.required' => 'El nombre de contacto es obligatorio.',
-                'contacto_correo.required' => 'El correo de contacto es obligatorio.'
+            ], [ // Mensajes Personalizados
+                'nombre_comercial.required'  => 'El nombre comercial del cliente es obligatorio.',
+                'nombre_comercial.max'       => 'El nombre comercial no puede superar los 255 caracteres.',
+                'rut.required'               => 'El RUT es obligatorio.',
+                'rut.unique'                 => 'Este RUT ya está registrado.',
+                'rut.max'                    => 'El RUT no puede superar los 20 caracteres.',
+                'direccion.required'         => 'La dirección es obligatoria.',
+                'direccion.max'              => 'La dirección no puede superar los 255 caracteres.',
+                'categoria.required'         => 'La categoría es obligatoria.',
+                'categoria.in'               => 'La categoría debe ser Regular o Preferencial.',
+                'contacto_nombre.required'   => 'El nombre de contacto es obligatorio.',
+                'contacto_nombre.max'        => 'El nombre de contacto no puede superar los 255 caracteres.',
+                'contacto_correo.required'   => 'El correo de contacto es obligatorio.',
+                'contacto_correo.email'      => 'El correo de contacto debe ser una dirección válida.',
+                'contacto_correo.max'        => 'El correo no puede superar los 255 caracteres.',
+                'porcentaje_oferta.integer'  => 'El porcentaje de oferta debe ser un número entero.',
+                'porcentaje_oferta.min'      => 'El porcentaje de oferta no puede ser negativo.',
+                'porcentaje_oferta.max'      => 'El porcentaje de oferta no puede superar el 100%.',
             ]);
+
+            // Verificar si existe como soft deleted y restaurar
+            $existing = Client::onlyTrashed()->where('rut', $validated['rut'])->first();
+
+            if ($existing) {
+                $existing->restore();
+                $existing->update(collect($validated)->except('rut')->toArray());
+                DB::commit();
+                return response()->json([
+                    'success' => true,
+                    'data'    => $existing->fresh(),
+                    'message' => 'Cliente restaurado y actualizado exitosamente.'
+                ], 200);
+            }
 
             $client = Client::create($validated);
 
@@ -56,7 +79,6 @@ class ClientController extends Controller
             DB::commit();
 
             return response()->json(['success' => true, 'data' => $client, 'message' => 'Cliente creado exitosamente'], 201);
-
         } catch (ValidationException $e) {
             DB::rollBack();
             return response()->json(['success' => false, 'message' => 'Error de validación', 'errors' => $e->errors()], 422);
@@ -73,7 +95,7 @@ class ClientController extends Controller
             $client = Client::findOrFail($id);
             return response()->json(['success' => true, 'data' => $client], 200);
         } catch (ModelNotFoundException $e) {
-            return response()->json(['success' => false, 'message' => 'Client no encontrado'], 404);
+            return response()->json(['success' => false, 'message' => 'Cliente no encontrado'], 404);
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'message' => 'Error de servidor', 'error' => $e->getMessage()], 500);
         }
@@ -87,7 +109,7 @@ class ClientController extends Controller
 
             $validated = $request->validate([
                 'nombre_comercial' => 'sometimes|required|string|max:255',
-                'rut' => 'sometimes|required|string|unique:clients,rut,'.$id.'|max:20',
+                'rut' => 'sometimes|required|string|unique:clients,rut,' . $id . '|max:20',
                 'direccion' => 'sometimes|required|string|max:255',
                 'categoria' => 'sometimes|required|in:Regular,Preferencial',
                 'contacto_nombre' => 'sometimes|required|string|max:255',
@@ -99,7 +121,6 @@ class ClientController extends Controller
             DB::commit();
 
             return response()->json(['success' => true, 'data' => $client, 'message' => 'Cliente actualizado'], 200);
-
         } catch (ModelNotFoundException $e) {
             DB::rollBack();
             return response()->json(['success' => false, 'message' => 'Cliente no encontrado'], 404);
@@ -128,7 +149,6 @@ class ClientController extends Controller
             DB::commit();
 
             return response()->json(['success' => true, 'message' => 'Cliente eliminado exitosamente'], 200);
-
         } catch (ModelNotFoundException $e) {
             DB::rollBack();
             return response()->json(['success' => false, 'message' => 'Cliente no encontrado'], 404);

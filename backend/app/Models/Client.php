@@ -20,6 +20,6 @@ class Client extends Model
     // Un cliente puede tener muchas camisetas (Shirts) asignadas
     public function shirts(): HasMany
     {
-        return $this->hasMany(Shirt::class);
+        return $this->hasMany(Shirt::class,'cliente_id');
     }
 }

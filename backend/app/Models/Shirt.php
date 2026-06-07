@@ -30,7 +30,7 @@ class Shirt extends Model
     // Una camiseta pertenece a un cliente
     public function client(): BelongsTo
     {
-        return $this->belongsTo(Client::class);
+        return $this->belongsTo(Client::class, 'cliente_id');
     }
 
     // Relación Muchos a Muchos con Tallas (Sizes)
