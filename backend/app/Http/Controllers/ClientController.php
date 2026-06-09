@@ -9,8 +9,28 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
+use OpenApi\Attributes as OA;
+
 class ClientController extends Controller
 {
+    #[OA\Get(
+        path: "/clients",
+        operationId: "getClients",
+        summary: "Listar todos los clientes",
+        tags: ["Clientes"],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: "Listado exitoso",
+                content: new OA\JsonContent(
+                    properties: [
+                        new OA\Property(property: "success", type: "boolean", example: true),
+                        new OA\Property(property: "data", type: "array", items: new OA\Items(ref: "#/components/schemas/Client"))
+                    ]
+                )
+            )
+        ]
+    )]
     public function index(): JsonResponse
     {
         try {
@@ -25,6 +45,23 @@ class ClientController extends Controller
         }
     }
 
+    #[OA\Post(
+        path: "/clients",
+        operationId: "createClient",
+        summary: "Registrar un nuevo cliente",
+        tags: ["Clientes"],
+        requestBody: new OA\RequestBody(required: true, content: new OA\JsonContent(ref: "#/components/schemas/ClientInput")),
+        responses: [
+            new OA\Response(response: 201, description: "Cliente creado", content: new OA\JsonContent(
+                properties: [
+                    new OA\Property(property: "success", type: "boolean", example: true),
+                    new OA\Property(property: "data", ref: "#/components/schemas/Client"),
+                    new OA\Property(property: "message", type: "string")
+                ]
+            )),
+            new OA\Response(response: 422, description: "Errores de validación")
+        ]
+    )]
     public function store(Request $request): JsonResponse
     {
         // 1. Iniciamos la transacción exigida por la rúbrica
@@ -89,6 +126,22 @@ class ClientController extends Controller
         }
     }
 
+    #[OA\Get(
+        path: "/clients/{id}",
+        operationId: "getClient",
+        summary: "Obtener cliente por ID",
+        tags: ["Clientes"],
+        parameters: [new OA\Parameter(name: "id", in: "path", required: true, schema: new OA\Schema(type: "integer"))],
+        responses: [
+            new OA\Response(response: 200, description: "Cliente encontrado", content: new OA\JsonContent(
+                properties: [
+                    new OA\Property(property: "success", type: "boolean", example: true),
+                    new OA\Property(property: "data", ref: "#/components/schemas/Client")
+                ]
+            )),
+            new OA\Response(response: 404, description: "Cliente no encontrado")
+        ]
+    )]
     public function show(string $id): JsonResponse
     {
         try {
@@ -101,6 +154,19 @@ class ClientController extends Controller
         }
     }
 
+    #[OA\Put(
+        path: "/clients/{id}",
+        operationId: "updateClient",
+        summary: "Actualizar un cliente",
+        tags: ["Clientes"],
+        parameters: [new OA\Parameter(name: "id", in: "path", required: true, schema: new OA\Schema(type: "integer"))],
+        requestBody: new OA\RequestBody(required: true, content: new OA\JsonContent(ref: "#/components/schemas/ClientInput")),
+        responses: [
+            new OA\Response(response: 200, description: "Cliente actualizado"),
+            new OA\Response(response: 404, description: "Cliente no encontrado"),
+            new OA\Response(response: 422, description: "Errores de validación")
+        ]
+    )]
     public function update(Request $request, string $id): JsonResponse
     {
         DB::beginTransaction();
@@ -133,6 +199,19 @@ class ClientController extends Controller
         }
     }
 
+    #[OA\Delete(
+        path: "/clients/{id}",
+        operationId: "deleteClient",
+        summary: "Eliminar un cliente",
+        description: "Aplica un SoftDelete. Falla si el cliente tiene camisetas asociadas.",
+        tags: ["Clientes"],
+        parameters: [new OA\Parameter(name: "id", in: "path", required: true, schema: new OA\Schema(type: "integer"))],
+        responses: [
+            new OA\Response(response: 200, description: "Cliente eliminado exitosamente"),
+            new OA\Response(response: 409, description: "Conflicto: tiene camisetas asociadas"),
+            new OA\Response(response: 404, description: "Cliente no encontrado")
+        ]
+    )]
     public function destroy(string $id): JsonResponse
     {
         DB::beginTransaction();

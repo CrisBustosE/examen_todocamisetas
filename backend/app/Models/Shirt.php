@@ -65,6 +65,15 @@ class Shirt extends Model
         }
 
         // 3. Regla de Negocio: Cumplimiento estricto del enunciado
+        /*
+        ▪ Si el cliente_id corresponde a “90minutos” (Categoría Preferencial) y la
+        camiseta tiene precio_oferta definido, entonces el sistema debe devolver, al
+        consultar el recurso, el campo precio_final igual a dicho precio_oferta.
+
+        ▪ Si el cliente_id corresponde a “tdeportes” (Categoría Regular) o no existe
+        ninguna oferta para esa camiseta, el sistema debe devolver precio_final igual
+        a precio (precio base).
+        */
         if ($client->categoria === 'Preferencial' && $shirt->precio_oferta !== null) {
             $shirt->precio_final = $shirt->precio_oferta;
         } else {
@@ -72,9 +81,10 @@ class Shirt extends Model
         }
 
         /*
-        * PROPUESTA EXTENDIDA - "Mejor Precio Garantizado"
+        * Nota de Negocio (Alternativa de Negocio) - "Mejor Precio Garantizado"
         * Considera el porcentaje_oferta del cliente para todos los productos.
         * Pendiente confirmación del profesor sobre si aplica a clientes regulares.
+        * Además, reduce el precio a preferenciales mejor que precio_oferta si su porcentaje_oferta es más beneficioso
         *
         * $basePrice = $shirt->precio;
         * $priceWithDiscount = $basePrice;

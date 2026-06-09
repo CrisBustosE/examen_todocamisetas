@@ -9,8 +9,19 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
+use OpenApi\Attributes as OA;
+
 class ShirtController extends Controller
 {
+    #[OA\Get(
+        path: "/shirts",
+        operationId: "getShirts",
+        summary: "Listar todas las camisetas",
+        tags: ["Camisetas"],
+        responses: [
+            new OA\Response(response: 200, description: "Listado exitoso")
+        ]
+    )]
     public function index(): JsonResponse
     {
         try {
@@ -22,6 +33,17 @@ class ShirtController extends Controller
         }
     }
 
+    #[OA\Post(
+        path: "/shirts",
+        operationId: "createShirt",
+        summary: "Crear una nueva camiseta",
+        tags: ["Camisetas"],
+        requestBody: new OA\RequestBody(required: true, content: new OA\JsonContent(ref: "#/components/schemas/ShirtInput")),
+        responses: [
+            new OA\Response(response: 201, description: "Camiseta creada"),
+            new OA\Response(response: 422, description: "Errores de validación")
+        ]
+    )]
     public function store(Request $request): JsonResponse
     {
         DB::beginTransaction();
@@ -95,6 +117,22 @@ class ShirtController extends Controller
         }
     }
 
+    #[OA\Get(
+        path: "/shirts/{id}",
+        operationId: "getShirt",
+        summary: "Consultar precio final de camiseta",
+        description: "Calcula dinámicamente el precio final dependiendo de si el cliente es Regular o Preferencial, y si posee un porcentaje_oferta global.",
+        tags: ["Camisetas"],
+        parameters: [
+            new OA\Parameter(name: "id", in: "path", required: true, schema: new OA\Schema(type: "integer")),
+            new OA\Parameter(name: "client_id", in: "query", required: true, schema: new OA\Schema(type: "integer"), description: "ID del cliente que consulta para calcular reglas de negocio")
+        ],
+        responses: [
+            new OA\Response(response: 200, description: "Camiseta con precio calculado"),
+            new OA\Response(response: 400, description: "Falta parámetro client_id"),
+            new OA\Response(response: 404, description: "Camiseta o cliente no encontrado")
+        ]
+    )]
     public function show(Request $request, string $id): JsonResponse
     {
         try {
@@ -116,6 +154,17 @@ class ShirtController extends Controller
         }
     }
 
+    #[OA\Put(
+        path: "/shirts/{id}",
+        operationId: "updateShirt",
+        summary: "Actualizar una camiseta",
+        tags: ["Camisetas"],
+        parameters: [new OA\Parameter(name: "id", in: "path", required: true, schema: new OA\Schema(type: "integer"))],
+        requestBody: new OA\RequestBody(required: true, content: new OA\JsonContent(ref: "#/components/schemas/ShirtInput")),
+        responses: [
+            new OA\Response(response: 200, description: "Camiseta actualizada")
+        ]
+    )]
     public function update(Request $request, string $id): JsonResponse
     {
         DB::beginTransaction();
@@ -158,6 +207,16 @@ class ShirtController extends Controller
         }
     }
 
+    #[OA\Delete(
+        path: "/shirts/{id}",
+        operationId: "deleteShirt",
+        summary: "Eliminar una camiseta",
+        tags: ["Camisetas"],
+        parameters: [new OA\Parameter(name: "id", in: "path", required: true, schema: new OA\Schema(type: "integer"))],
+        responses: [
+            new OA\Response(response: 200, description: "Camiseta eliminada")
+        ]
+    )]
     public function destroy(string $id): JsonResponse
     {
         DB::beginTransaction();

@@ -9,8 +9,28 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
+use OpenApi\Attributes as OA;
+
 class SizeController extends Controller
 {
+    #[OA\Get(
+        path: "/sizes",
+        operationId: "getSizes",
+        summary: "Listar todas las tallas",
+        tags: ["Tallas"],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: "Listado exitoso",
+                content: new OA\JsonContent(
+                    properties: [
+                        new OA\Property(property: "success", type: "boolean", example: true),
+                        new OA\Property(property: "data", type: "array", items: new OA\Items(ref: "#/components/schemas/Size"))
+                    ]
+                )
+            )
+        ]
+    )]
     public function index(): JsonResponse
     {
         try {
@@ -21,6 +41,17 @@ class SizeController extends Controller
         }
     }
 
+    #[OA\Post(
+        path: "/sizes",
+        operationId: "createSize",
+        summary: "Crear una nueva talla",
+        tags: ["Tallas"],
+        requestBody: new OA\RequestBody(required: true, content: new OA\JsonContent(ref: "#/components/schemas/SizeInput")),
+        responses: [
+            new OA\Response(response: 201, description: "Talla creada"),
+            new OA\Response(response: 422, description: "Errores de validación")
+        ]
+    )]
     public function store(Request $request): JsonResponse
     {
         DB::beginTransaction();
@@ -61,6 +92,17 @@ class SizeController extends Controller
         }
     }
 
+    #[OA\Get(
+        path: "/sizes/{id}",
+        operationId: "getSize",
+        summary: "Obtener talla por ID",
+        tags: ["Tallas"],
+        parameters: [new OA\Parameter(name: "id", in: "path", required: true, schema: new OA\Schema(type: "integer"))],
+        responses: [
+            new OA\Response(response: 200, description: "Talla encontrada"),
+            new OA\Response(response: 404, description: "Talla no encontrada")
+        ]
+    )]
     public function show(string $id): JsonResponse
     {
         try {
@@ -73,6 +115,17 @@ class SizeController extends Controller
         }
     }
 
+    #[OA\Put(
+        path: "/sizes/{id}",
+        operationId: "updateSize",
+        summary: "Actualizar una talla",
+        tags: ["Tallas"],
+        parameters: [new OA\Parameter(name: "id", in: "path", required: true, schema: new OA\Schema(type: "integer"))],
+        requestBody: new OA\RequestBody(required: true, content: new OA\JsonContent(ref: "#/components/schemas/SizeInput")),
+        responses: [
+            new OA\Response(response: 200, description: "Talla actualizada")
+        ]
+    )]
     public function update(Request $request, string $id): JsonResponse
     {
         DB::beginTransaction();
@@ -99,6 +152,18 @@ class SizeController extends Controller
         }
     }
 
+    #[OA\Delete(
+        path: "/sizes/{id}",
+        operationId: "deleteSize",
+        summary: "Eliminar una talla",
+        description: "Falla con 409 si la talla está asociada a una camiseta.",
+        tags: ["Tallas"],
+        parameters: [new OA\Parameter(name: "id", in: "path", required: true, schema: new OA\Schema(type: "integer"))],
+        responses: [
+            new OA\Response(response: 200, description: "Talla eliminada"),
+            new OA\Response(response: 409, description: "Conflicto: talla en uso")
+        ]
+    )]
     public function destroy(string $id): JsonResponse
     {
         DB::beginTransaction();
