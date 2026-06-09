@@ -110,7 +110,7 @@ class ShirtController extends Controller
 
             return response()->json(['success' => true, 'data' => $shirt], 200);
         } catch (ModelNotFoundException $e) {
-            return response()->json(['success' => false, 'message' => 'Camiseta no encontrada'], 404);
+            return response()->json(['success' => false, 'message' => $e->getMessage()], 404);
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'message' => 'Error de servidor', 'error' => $e->getMessage()], 500);
         }
@@ -176,24 +176,4 @@ class ShirtController extends Controller
             return response()->json(['success' => false, 'message' => 'Error al eliminar', 'error' => $e->getMessage()], 500);
         }
     }
-
-    // En caso de querer restaurar las camisetas (shirts) eliminadas
-    /*
-    public function restore(string $id): JsonResponse
-    {
-        DB::beginTransaction();
-        try {
-            $shirt = Shirt::onlyTrashed()->findOrFail($id);
-            $shirt->restore();
-            DB::commit();
-            return response()->json(['success' => true, 'message' => 'Camiseta restaurada exitosamente'], 200);
-        } catch (ModelNotFoundException $e) {
-            DB::rollBack();
-            return response()->json(['success' => false, 'message' => 'Camiseta no encontrada'], 404);
-        } catch (\Exception $e) {
-            DB::rollBack();
-            return response()->json(['success' => false, 'message' => 'Error al restaurar', 'error' => $e->getMessage()], 500);
-        }
-    }
-    */
 }
