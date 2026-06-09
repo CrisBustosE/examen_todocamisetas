@@ -64,14 +64,47 @@ class Shirt extends Model
             throw new ModelNotFoundException("Camiseta no encontrada.");
         }
 
-        // 3. Regla de Negocio: Cálculo dinámico de precio
+        // 3. Regla de Negocio: Cumplimiento estricto del enunciado
         if ($client->categoria === 'Preferencial' && $shirt->precio_oferta !== null) {
             $shirt->precio_final = $shirt->precio_oferta;
         } else {
             $shirt->precio_final = $shirt->precio;
         }
 
-        // Devolvemos el objeto con el atributo inyectado "precio_final"
-        return $shirt;
+        /*
+        * PROPUESTA EXTENDIDA - "Mejor Precio Garantizado"
+        * Considera el porcentaje_oferta del cliente para todos los productos.
+        * Pendiente confirmación del profesor sobre si aplica a clientes regulares.
+        *
+        * $basePrice = $shirt->precio;
+        * $priceWithDiscount = $basePrice;
+        * if ($client->porcentaje_oferta > 0) {
+        *     $discountAmount = $basePrice * ($client->porcentaje_oferta / 100);
+        *     $priceWithDiscount = (int) round($basePrice - $discountAmount);
+        * }
+        * if ($client->categoria === 'Preferencial' && $shirt->precio_oferta !== null) {
+        *     $shirt->precio_final = min($shirt->precio_oferta, $priceWithDiscount);
+        * } else {
+        *     $shirt->precio_final = $priceWithDiscount;
+        * }
+        */
+
+        // Retornamos el arreglo limpio
+        return [
+            'id'                 => $shirt->id,
+            'titulo'             => $shirt->titulo,
+            'club'               => $shirt->club,
+            'pais'               => $shirt->pais,
+            'tipo'               => $shirt->tipo,
+            'color'              => $shirt->color,
+            'detalles'           => $shirt->detalles,
+            'codigo_producto'    => $shirt->codigo_producto,
+            'tallas_disponibles' => $shirt->tallas_disponibles,
+            'precio_final'       => $shirt->precio_final,
+            'cliente_consultor'  => [
+                'id'        => $client->id,
+                'categoria' => $client->categoria,
+            ],
+        ];
     }
 }
