@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('direccion');
             $table->enum('categoria', ['Regular', 'Preferencial']);
             $table->string('contacto_nombre');
-            $table->string('contacto_correo');
+            $table->string('contacto_correo')->unique();
             $table->integer('porcentaje_oferta')->nullable();
             $table->timestamps();
             //agrega columna deleted_at manipulado por Laravel

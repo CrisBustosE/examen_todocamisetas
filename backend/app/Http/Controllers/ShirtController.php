@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Shirt;
+use App\Models\Client;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
@@ -30,6 +31,62 @@ class ShirtController extends Controller
             return response()->json(['success' => true, 'data' => $shirts], 200);
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'message' => 'Error al listar', 'error' => $e->getMessage()], 500);
+        }
+    }
+
+    #[OA\Get(
+        path: "/clients/{id}/shirts",
+        operationId: "getShirtsByClient",
+        summary: "Obtener las camisetas de un cliente específico",
+        description: "Busca un cliente por su ID y devuelve todas las camisetas que tiene asociadas, incluyendo sus tallas disponibles.",
+        tags: ["Camisetas"],
+        parameters: [
+            new OA\Parameter(
+                name: "id",
+                in: "path",
+                required: true,
+                schema: new OA\Schema(type: "integer"),
+                description: "ID del cliente consultado"
+            )
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: "Listado exitoso",
+                content: new OA\JsonContent(
+                    properties: [
+                        new OA\Property(property: "success", type: "boolean", example: true),
+                        new OA\Property(property: "data", type: "array", items: new OA\Items(ref: "#/components/schemas/Shirt"))
+                    ]
+                )
+            ),
+            new OA\Response(
+                response: 404,
+                description: "Cliente no encontrado",
+                content: new OA\JsonContent(
+                    properties: [
+                        new OA\Property(property: "success", type: "boolean", example: false),
+                        new OA\Property(property: "message", type: "string", example: "Cliente no encontrado")
+                    ]
+                )
+            ),
+            new OA\Response(
+                response: 500,
+                description: "Error de servidor"
+            )
+        ]
+    )]
+    public function byClient(string $id): JsonResponse
+    {
+        try {
+            // Busca al cliente, si no existe salta al primer catch. Sirve de guardia
+            $client = Client::findOrFail($id);
+            $shirts = Shirt::with('sizes')->where('cliente_id', $id)->get();
+            return response()->json(['success' => true, 'data' => $shirts], 200);
+        } catch (ModelNotFoundException $e) {
+            return response()->json(['success' => false, 'message' => 'Cliente no encontrado'], 404);
+        } catch (\Throwable $e) {
+            return response()->json(['success' => false, 'message' => 'Error de servidor', 'error' => $e->getMessage()], 500);
         }
     }
 

@@ -15,7 +15,7 @@ class Size extends Model
     protected $fillable = ['nombre'];
 
     // Relación Muchos a Muchos con Camisetas (Shirts)
-    public function Shirts(): BelongsToMany
+    public function shirts(): BelongsToMany
     {
         return $this->belongsToMany(Shirt::class, 'shirt_size');
     }

@@ -74,7 +74,7 @@ class ClientController extends Controller
                 'direccion'        => 'required|string|max:255',
                 'categoria'        => 'required|in:Regular,Preferencial',
                 'contacto_nombre'  => 'required|string|max:255',
-                'contacto_correo'  => 'required|email|max:255',
+                'contacto_correo' => 'required|email|unique:clients,contacto_correo|max:255',
                 'porcentaje_oferta' => 'nullable|integer|min:0|max:100',
             ], [ // Mensajes Personalizados
                 'nombre_comercial.required'  => 'El nombre comercial del cliente es obligatorio.',
@@ -90,6 +90,7 @@ class ClientController extends Controller
                 'contacto_nombre.max'        => 'El nombre de contacto no puede superar los 255 caracteres.',
                 'contacto_correo.required'   => 'El correo de contacto es obligatorio.',
                 'contacto_correo.email'      => 'El correo de contacto debe ser una dirección válida.',
+                'contacto_correo.unique'     => 'Este correo de contacto ya está registrado.',
                 'contacto_correo.max'        => 'El correo no puede superar los 255 caracteres.',
                 'porcentaje_oferta.integer'  => 'El porcentaje de oferta debe ser un número entero.',
                 'porcentaje_oferta.min'      => 'El porcentaje de oferta no puede ser negativo.',
@@ -179,7 +180,7 @@ class ClientController extends Controller
                 'direccion' => 'sometimes|required|string|max:255',
                 'categoria' => 'sometimes|required|in:Regular,Preferencial',
                 'contacto_nombre' => 'sometimes|required|string|max:255',
-                'contacto_correo' => 'sometimes|required|email|max:255',
+                'contacto_correo' => 'sometimes|required|email|unique:clients,contacto_correo,'.$id.'|max:255',
                 'porcentaje_oferta' => 'nullable|integer|min:0|max:100',
             ]);
 
