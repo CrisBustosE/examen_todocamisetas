@@ -71,13 +71,24 @@ class ClientController extends Controller
         DB::beginTransaction();
 
         try {
+            // Buscamos en la papelera ANTES de validar
+            $rutIngresado = $request->input('rut');
+            $existing = Client::onlyTrashed()->where('rut', $rutIngresado)->first();
+
+            // Construimos la regla del correo dinámicamente:
+            // Si el cliente existe en papelera, ignoramos SU id para no chocar con su propio correo.
+            // Si no existe, validamos de forma estricta contra toda la tabla.
+            $reglaCorreo = $existing
+                ? 'required|email|max:255|unique:clients,contacto_correo,' . $existing->id
+                : 'required|email|max:255|unique:clients,contacto_correo';
+
             $validated = $request->validate([
                 'nombre_comercial'  => 'required|string|max:255',
                 'rut'               => 'required|string|max:20|unique:clients,rut,NULL,id,deleted_at,NULL',
                 'direccion'         => 'required|string|max:255',
                 'categoria'         => 'required|in:Regular,Preferencial',
                 'contacto_nombre'   => 'required|string|max:255',
-                'contacto_correo'   => 'required|email|unique:clients,contacto_correo|max:255',
+                'contacto_correo'   => $reglaCorreo, // Usamos la regla dinámica aquí
                 'porcentaje_oferta' => 'nullable|integer|min:0|max:100',
             ], [ // Mensajes personalizados
                 'required' => 'El campo :attribute es obligatorio.',
@@ -89,9 +100,8 @@ class ClientController extends Controller
                 'integer'  => 'El porcentaje de oferta debe ser un número entero.',
                 'min'      => 'El porcentaje mínimo es 0.',
             ]);
-            // Verificar si existe como soft deleted y restaurar
-            $existing = Client::onlyTrashed()->where('rut', $validated['rut'])->first();
 
+            // Restauración (Si la validación pasó y existía en papelera)
             if ($existing) {
                 $existing->restore();
                 $existing->update(collect($validated)->except('rut')->toArray());
