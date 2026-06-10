@@ -3,14 +3,27 @@
 namespace App\Http\Controllers;
 
 use App\Models\Shirt;
+use App\Models\Client;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
+use OpenApi\Attributes as OA;
+
 class ShirtController extends Controller
 {
+    #[OA\Get(
+        path: "/shirts",
+        operationId: "getShirts",
+        summary: "Listar todas las camisetas",
+        tags: ["Camisetas"],
+        responses: [
+            new OA\Response(response: 200, description: "Listado exitoso"),
+            new OA\Response(response: 500, description: "Error interno del servidor")
+        ]
+    )]
     public function index(): JsonResponse
     {
         try {
@@ -22,6 +35,71 @@ class ShirtController extends Controller
         }
     }
 
+    #[OA\Get(
+        path: "/clients/{id}/shirts",
+        operationId: "getShirtsByClient",
+        summary: "Obtener las camisetas de un cliente específico",
+        description: "Busca un cliente por su ID y devuelve todas las camisetas que tiene asociadas, incluyendo sus tallas disponibles.",
+        tags: ["Camisetas"],
+        parameters: [
+            new OA\Parameter(
+                name: "id",
+                in: "path",
+                required: true,
+                schema: new OA\Schema(type: "integer"),
+                description: "ID del cliente consultado"
+            )
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: "Listado exitoso",
+                content: new OA\JsonContent(
+                    properties: [
+                        new OA\Property(property: "success", type: "boolean", example: true),
+                        new OA\Property(property: "data", type: "array", items: new OA\Items(ref: "#/components/schemas/Shirt"))
+                    ]
+                )
+            ),
+            new OA\Response(
+                response: 404,
+                description: "Cliente no encontrado",
+                content: new OA\JsonContent(
+                    properties: [
+                        new OA\Property(property: "success", type: "boolean", example: false),
+                        new OA\Property(property: "message", type: "string", example: "Cliente no encontrado")
+                    ]
+                )
+            ),
+            new OA\Response(response: 500, description: "Error interno del servidor")
+        ]
+    )]
+    public function byClient(string $id): JsonResponse
+    {
+        try {
+            // Busca al cliente, si no existe salta al primer catch. Sirve de guardia
+            $client = Client::findOrFail($id);
+            $shirts = Shirt::with('sizes')->where('cliente_id', $id)->get();
+            return response()->json(['success' => true, 'data' => $shirts], 200);
+        } catch (ModelNotFoundException $e) {
+            return response()->json(['success' => false, 'message' => 'Cliente no encontrado'], 404);
+        } catch (\Throwable $e) {
+            return response()->json(['success' => false, 'message' => 'Error de servidor', 'error' => $e->getMessage()], 500);
+        }
+    }
+
+    #[OA\Post(
+        path: "/shirts",
+        operationId: "createShirt",
+        summary: "Crear una nueva camiseta",
+        tags: ["Camisetas"],
+        requestBody: new OA\RequestBody(required: true, content: new OA\JsonContent(ref: "#/components/schemas/ShirtInput")),
+        responses: [
+            new OA\Response(response: 201, description: "Camiseta creada"),
+            new OA\Response(response: 422, description: "Errores de validación"),
+            new OA\Response(response: 500, description: "Error interno del servidor")
+        ]
+    )]
     public function store(Request $request): JsonResponse
     {
         DB::beginTransaction();
@@ -39,7 +117,7 @@ class ShirtController extends Controller
                 'codigo_producto' => 'required|string|max:50|unique:shirts,codigo_producto,NULL,id,deleted_at,NULL',
                 'sizes_ids'       => 'required|array',
                 'sizes_ids.*'     => 'exists:sizes,id'
-            ], [
+            ], [ // Mensajes personalizados
                 'cliente_id.required'          => 'El cliente es obligatorio.',
                 'cliente_id.exists'            => 'El cliente especificado no existe.',
                 'titulo.required'              => 'El título de la camiseta es obligatorio.',
@@ -95,6 +173,23 @@ class ShirtController extends Controller
         }
     }
 
+    #[OA\Get(
+        path: "/shirts/{id}",
+        operationId: "getShirt",
+        summary: "Consultar precio final de camiseta",
+        description: "Calcula dinámicamente el precio final dependiendo de si el cliente es Regular o Preferencial, y si posee un porcentaje_oferta global.",
+        tags: ["Camisetas"],
+        parameters: [
+            new OA\Parameter(name: "id", in: "path", required: true, schema: new OA\Schema(type: "integer")),
+            new OA\Parameter(name: "client_id", in: "query", required: true, schema: new OA\Schema(type: "integer"), description: "ID del cliente que consulta para calcular reglas de negocio")
+        ],
+        responses: [
+            new OA\Response(response: 200, description: "Camiseta con precio calculado"),
+            new OA\Response(response: 400, description: "Falta parámetro client_id"),
+            new OA\Response(response: 404, description: "Camiseta o cliente no encontrado"),
+            new OA\Response(response: 500, description: "Error interno del servidor")
+        ]
+    )]
     public function show(Request $request, string $id): JsonResponse
     {
         try {
@@ -116,6 +211,20 @@ class ShirtController extends Controller
         }
     }
 
+    #[OA\Put(
+        path: "/shirts/{id}",
+        operationId: "updateShirt",
+        summary: "Actualizar una camiseta",
+        tags: ["Camisetas"],
+        parameters: [new OA\Parameter(name: "id", in: "path", required: true, schema: new OA\Schema(type: "integer"))],
+        requestBody: new OA\RequestBody(required: true, content: new OA\JsonContent(ref: "#/components/schemas/ShirtInput")),
+        responses: [
+            new OA\Response(response: 200, description: "Camiseta actualizada"),
+            new OA\Response(response: 404, description: "Camiseta no encontrada"),
+            new OA\Response(response: 422, description: "Error de validación"),
+            new OA\Response(response: 500, description: "Error interno del servidor")
+        ]
+    )]
     public function update(Request $request, string $id): JsonResponse
     {
         DB::beginTransaction();
@@ -135,6 +244,18 @@ class ShirtController extends Controller
                 'codigo_producto' => 'sometimes|required|string|unique:shirts,codigo_producto,' . $id . '|max:50',
                 'sizes_ids' => 'sometimes|required|array',
                 'sizes_ids.*' => 'exists:sizes,id'
+            ], [ // Mensajes personalizados
+                'required' => 'El campo :attribute es obligatorio.',
+                'string'   => 'El campo :attribute debe ser texto.',
+                'max'      => 'El campo :attribute excede el largo permitido.',
+                'integer'  => 'El campo :attribute debe ser un número entero.',
+                'min'      => 'El campo :attribute no puede ser negativo.',
+                'exists'   => 'El registro seleccionado para :attribute no es válido o no existe en la base de datos.',
+                'unique'   => 'El valor de :attribute ya se encuentra registrado.',
+                'array'    => 'El campo :attribute debe ser enviado como un arreglo de datos.',
+            ], [
+                'sizes_ids'   => 'tallas',
+                'sizes_ids.*' => 'talla seleccionada',
             ]);
 
             $shirt->update(collect($validated)->except('sizes_ids')->toArray());
@@ -158,6 +279,18 @@ class ShirtController extends Controller
         }
     }
 
+    #[OA\Delete(
+        path: "/shirts/{id}",
+        operationId: "deleteShirt",
+        summary: "Eliminar una camiseta",
+        tags: ["Camisetas"],
+        parameters: [new OA\Parameter(name: "id", in: "path", required: true, schema: new OA\Schema(type: "integer"))],
+        responses: [
+            new OA\Response(response: 200, description: "Camiseta eliminada"),
+            new OA\Response(response: 404, description: "Camiseta no encontrada"),
+            new OA\Response(response: 500, description: "Error interno del servidor")
+        ]
+    )]
     public function destroy(string $id): JsonResponse
     {
         DB::beginTransaction();

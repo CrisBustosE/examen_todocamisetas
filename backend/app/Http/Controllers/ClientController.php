@@ -9,8 +9,29 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
+use OpenApi\Attributes as OA;
+
 class ClientController extends Controller
 {
+    #[OA\Get(
+        path: "/clients",
+        operationId: "getClients",
+        summary: "Listar todos los clientes",
+        tags: ["Clientes"],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: "Listado exitoso",
+                content: new OA\JsonContent(
+                    properties: [
+                        new OA\Property(property: "success", type: "boolean", example: true),
+                        new OA\Property(property: "data", type: "array", items: new OA\Items(ref: "#/components/schemas/Client"))
+                    ]
+                )
+            ),
+            new OA\Response(response: 500, description: "Error interno del servidor")
+        ]
+    )]
     public function index(): JsonResponse
     {
         try {
@@ -25,6 +46,25 @@ class ClientController extends Controller
         }
     }
 
+    #[OA\Post(
+        path: "/clients",
+        operationId: "createClient",
+        summary: "Registrar un nuevo cliente",
+        tags: ["Clientes"],
+        requestBody: new OA\RequestBody(required: true, content: new OA\JsonContent(ref: "#/components/schemas/ClientInput")),
+        responses: [
+            new OA\Response(response: 201, description: "Cliente creado", content: new OA\JsonContent(
+                properties: [
+                    new OA\Property(property: "success", type: "boolean", example: true),
+                    new OA\Property(property: "data", ref: "#/components/schemas/Client"),
+                    new OA\Property(property: "message", type: "string")
+                ]
+            )),
+            new OA\Response(response: 200, description: "Cliente restaurado y actualizado exitosamente."),
+            new OA\Response(response: 422, description: "Errores de validación"),
+            new OA\Response(response: 500, description: "Error interno del servidor")
+        ]
+    )]
     public function store(Request $request): JsonResponse
     {
         // 1. Iniciamos la transacción exigida por la rúbrica
@@ -32,33 +72,23 @@ class ClientController extends Controller
 
         try {
             $validated = $request->validate([
-                'nombre_comercial' => 'required|string|max:255',
+                'nombre_comercial'  => 'required|string|max:255',
                 'rut'               => 'required|string|max:20|unique:clients,rut,NULL,id,deleted_at,NULL',
-                'direccion'        => 'required|string|max:255',
-                'categoria'        => 'required|in:Regular,Preferencial',
-                'contacto_nombre'  => 'required|string|max:255',
-                'contacto_correo'  => 'required|email|max:255',
+                'direccion'         => 'required|string|max:255',
+                'categoria'         => 'required|in:Regular,Preferencial',
+                'contacto_nombre'   => 'required|string|max:255',
+                'contacto_correo'   => 'required|email|unique:clients,contacto_correo|max:255',
                 'porcentaje_oferta' => 'nullable|integer|min:0|max:100',
-            ], [ // Mensajes Personalizados
-                'nombre_comercial.required'  => 'El nombre comercial del cliente es obligatorio.',
-                'nombre_comercial.max'       => 'El nombre comercial no puede superar los 255 caracteres.',
-                'rut.required'               => 'El RUT es obligatorio.',
-                'rut.unique'                 => 'Este RUT ya está registrado.',
-                'rut.max'                    => 'El RUT no puede superar los 20 caracteres.',
-                'direccion.required'         => 'La dirección es obligatoria.',
-                'direccion.max'              => 'La dirección no puede superar los 255 caracteres.',
-                'categoria.required'         => 'La categoría es obligatoria.',
-                'categoria.in'               => 'La categoría debe ser Regular o Preferencial.',
-                'contacto_nombre.required'   => 'El nombre de contacto es obligatorio.',
-                'contacto_nombre.max'        => 'El nombre de contacto no puede superar los 255 caracteres.',
-                'contacto_correo.required'   => 'El correo de contacto es obligatorio.',
-                'contacto_correo.email'      => 'El correo de contacto debe ser una dirección válida.',
-                'contacto_correo.max'        => 'El correo no puede superar los 255 caracteres.',
-                'porcentaje_oferta.integer'  => 'El porcentaje de oferta debe ser un número entero.',
-                'porcentaje_oferta.min'      => 'El porcentaje de oferta no puede ser negativo.',
-                'porcentaje_oferta.max'      => 'El porcentaje de oferta no puede superar el 100%.',
+            ], [ // Mensajes personalizados
+                'required' => 'El campo :attribute es obligatorio.',
+                'string'   => 'El campo :attribute debe ser texto.',
+                'max'      => 'El campo :attribute excede el largo permitido.',
+                'unique'   => 'El valor de :attribute ya se encuentra registrado.',
+                'email'    => 'El campo :attribute debe ser un correo válido.',
+                'in'       => 'La categoría debe ser Regular o Preferencial.',
+                'integer'  => 'El porcentaje de oferta debe ser un número entero.',
+                'min'      => 'El porcentaje mínimo es 0.',
             ]);
-
             // Verificar si existe como soft deleted y restaurar
             $existing = Client::onlyTrashed()->where('rut', $validated['rut'])->first();
 
@@ -89,6 +119,23 @@ class ClientController extends Controller
         }
     }
 
+    #[OA\Get(
+        path: "/clients/{id}",
+        operationId: "getClient",
+        summary: "Obtener cliente por ID",
+        tags: ["Clientes"],
+        parameters: [new OA\Parameter(name: "id", in: "path", required: true, schema: new OA\Schema(type: "integer"))],
+        responses: [
+            new OA\Response(response: 200, description: "Cliente encontrado", content: new OA\JsonContent(
+                properties: [
+                    new OA\Property(property: "success", type: "boolean", example: true),
+                    new OA\Property(property: "data", ref: "#/components/schemas/Client")
+                ]
+            )),
+            new OA\Response(response: 404, description: "Cliente no encontrado"),
+            new OA\Response(response: 500, description: "Error interno del servidor")
+        ]
+    )]
     public function show(string $id): JsonResponse
     {
         try {
@@ -101,6 +148,20 @@ class ClientController extends Controller
         }
     }
 
+    #[OA\Put(
+        path: "/clients/{id}",
+        operationId: "updateClient",
+        summary: "Actualizar un cliente",
+        tags: ["Clientes"],
+        parameters: [new OA\Parameter(name: "id", in: "path", required: true, schema: new OA\Schema(type: "integer"))],
+        requestBody: new OA\RequestBody(required: true, content: new OA\JsonContent(ref: "#/components/schemas/ClientInput")),
+        responses: [
+            new OA\Response(response: 200, description: "Cliente actualizado"),
+            new OA\Response(response: 404, description: "Cliente no encontrado"),
+            new OA\Response(response: 422, description: "Errores de validación"),
+            new OA\Response(response: 500, description: "Error interno del servidor")
+        ]
+    )]
     public function update(Request $request, string $id): JsonResponse
     {
         DB::beginTransaction();
@@ -113,8 +174,17 @@ class ClientController extends Controller
                 'direccion' => 'sometimes|required|string|max:255',
                 'categoria' => 'sometimes|required|in:Regular,Preferencial',
                 'contacto_nombre' => 'sometimes|required|string|max:255',
-                'contacto_correo' => 'sometimes|required|email|max:255',
+                'contacto_correo' => 'sometimes|required|email|unique:clients,contacto_correo,' . $id . '|max:255',
                 'porcentaje_oferta' => 'nullable|integer|min:0|max:100',
+            ], [ // Mensajes personalizados
+                'required' => 'El campo :attribute es obligatorio.',
+                'string'   => 'El campo :attribute debe ser texto.',
+                'max'      => 'El campo :attribute excede el largo permitido.',
+                'unique'   => 'El valor de :attribute ya se encuentra registrado.',
+                'email'    => 'El campo :attribute debe ser un correo válido.',
+                'in'       => 'La categoría debe ser Regular o Preferencial.',
+                'integer'  => 'El porcentaje de oferta debe ser un número entero.',
+                'min'      => 'El porcentaje mínimo es 0.',
             ]);
 
             $client->update($validated);
@@ -133,6 +203,20 @@ class ClientController extends Controller
         }
     }
 
+    #[OA\Delete(
+        path: "/clients/{id}",
+        operationId: "deleteClient",
+        summary: "Eliminar un cliente",
+        description: "Aplica un SoftDelete. Falla si el cliente tiene camisetas asociadas.",
+        tags: ["Clientes"],
+        parameters: [new OA\Parameter(name: "id", in: "path", required: true, schema: new OA\Schema(type: "integer"))],
+        responses: [
+            new OA\Response(response: 200, description: "Cliente eliminado exitosamente"),
+            new OA\Response(response: 409, description: "Conflicto: tiene camisetas asociadas"),
+            new OA\Response(response: 404, description: "Cliente no encontrado"),
+            new OA\Response(response: 500, description: "Error interno del servidor")
+        ]
+    )]
     public function destroy(string $id): JsonResponse
     {
         DB::beginTransaction();

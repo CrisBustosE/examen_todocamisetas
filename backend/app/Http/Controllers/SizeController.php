@@ -9,8 +9,29 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
+use OpenApi\Attributes as OA;
+
 class SizeController extends Controller
 {
+    #[OA\Get(
+        path: "/sizes",
+        operationId: "getSizes",
+        summary: "Listar todas las tallas",
+        tags: ["Tallas"],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: "Listado exitoso",
+                content: new OA\JsonContent(
+                    properties: [
+                        new OA\Property(property: "success", type: "boolean", example: true),
+                        new OA\Property(property: "data", type: "array", items: new OA\Items(ref: "#/components/schemas/Size"))
+                    ]
+                )
+            ),
+            new OA\Response(response: 500, description: "Error interno del servidor")
+        ]
+    )]
     public function index(): JsonResponse
     {
         try {
@@ -21,6 +42,18 @@ class SizeController extends Controller
         }
     }
 
+    #[OA\Post(
+        path: "/sizes",
+        operationId: "createSize",
+        summary: "Crear una nueva talla",
+        tags: ["Tallas"],
+        requestBody: new OA\RequestBody(required: true, content: new OA\JsonContent(ref: "#/components/schemas/SizeInput")),
+        responses: [
+            new OA\Response(response: 201, description: "Talla creada"),
+            new OA\Response(response: 422, description: "Errores de validación"),
+            new OA\Response(response: 500, description: "Error interno del servidor")
+        ]
+    )]
     public function store(Request $request): JsonResponse
     {
         DB::beginTransaction();
@@ -28,10 +61,10 @@ class SizeController extends Controller
             $validated = $request->validate([
                 'nombre' => 'required|string|max:50|unique:sizes,nombre,NULL,id,deleted_at,NULL',
             ], [
-                'nombre.required' => 'El nombre de la talla es obligatorio.',
-                'nombre.string'   => 'El nombre de la talla debe ser texto.',
-                'nombre.unique'   => 'Esta talla ya está registrada.',
-                'nombre.max'      => 'El nombre de la talla no puede superar los 50 caracteres.',
+                'required' => 'El campo :attribute es obligatorio.',
+                'string'   => 'El campo :attribute debe ser texto.',
+                'unique'   => 'El valor de :attribute ya se encuentra registrado.',
+                'max'      => 'El campo :attribute excede el largo permitido.',
             ]);
 
             // Verificar si existe como soft deleted y restaurar
@@ -61,6 +94,18 @@ class SizeController extends Controller
         }
     }
 
+    #[OA\Get(
+        path: "/sizes/{id}",
+        operationId: "getSize",
+        summary: "Obtener talla por ID",
+        tags: ["Tallas"],
+        parameters: [new OA\Parameter(name: "id", in: "path", required: true, schema: new OA\Schema(type: "integer"))],
+        responses: [
+            new OA\Response(response: 200, description: "Talla encontrada"),
+            new OA\Response(response: 404, description: "Talla no encontrada"),
+            new OA\Response(response: 500, description: "Error interno del servidor")
+        ]
+    )]
     public function show(string $id): JsonResponse
     {
         try {
@@ -73,6 +118,20 @@ class SizeController extends Controller
         }
     }
 
+    #[OA\Put(
+        path: "/sizes/{id}",
+        operationId: "updateSize",
+        summary: "Actualizar una talla",
+        tags: ["Tallas"],
+        parameters: [new OA\Parameter(name: "id", in: "path", required: true, schema: new OA\Schema(type: "integer"))],
+        requestBody: new OA\RequestBody(required: true, content: new OA\JsonContent(ref: "#/components/schemas/SizeInput")),
+        responses: [
+            new OA\Response(response: 200, description: "Talla actualizada"),
+            new OA\Response(response: 404, description: "Talla no encontrada"),
+            new OA\Response(response: 422, description: "Error de validación"),
+            new OA\Response(response: 500, description: "Error interno del servidor")
+        ]
+    )]
     public function update(Request $request, string $id): JsonResponse
     {
         DB::beginTransaction();
@@ -81,6 +140,11 @@ class SizeController extends Controller
 
             $validated = $request->validate([
                 'nombre' => 'sometimes|required|string|unique:sizes,nombre,' . $id . '|max:50',
+            ], [
+                'required' => 'El campo :attribute es obligatorio.',
+                'string'   => 'El campo :attribute debe ser texto.',
+                'unique'   => 'El valor de :attribute ya se encuentra registrado.',
+                'max'      => 'El campo :attribute excede el largo permitido.',
             ]);
 
             $size->update($validated);
@@ -99,6 +163,20 @@ class SizeController extends Controller
         }
     }
 
+    #[OA\Delete(
+        path: "/sizes/{id}",
+        operationId: "deleteSize",
+        summary: "Eliminar una talla",
+        description: "Falla con 409 si la talla está asociada a una camiseta.",
+        tags: ["Tallas"],
+        parameters: [new OA\Parameter(name: "id", in: "path", required: true, schema: new OA\Schema(type: "integer"))],
+        responses: [
+            new OA\Response(response: 200, description: "Talla eliminada"),
+            new OA\Response(response: 409, description: "Conflicto: talla en uso"),
+            new OA\Response(response: 404, description: "Talla no encontrada"),
+            new OA\Response(response: 500, description: "Error interno del servidor")
+        ]
+    )]
     public function destroy(string $id): JsonResponse
     {
         DB::beginTransaction();

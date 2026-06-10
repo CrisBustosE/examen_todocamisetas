@@ -23,9 +23,6 @@ Route::prefix('v1')->group(function () {
     // Tambien se pide listar camisetas por clientes
     Route::get('clients/{id}/shirts', [ShirtController::class, 'byClient']);
 
-    // En caso de querer rerstaurar camisetas con SoftDelete
-    //Route::patch('shirts/{id}/restore', [ShirtController::class, 'restore']);
-
     // ======== Tallas ======== //
     Route::apiResource('sizes', SizeController::class);
 });

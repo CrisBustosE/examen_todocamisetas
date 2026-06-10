@@ -26,7 +26,8 @@ class HealthController extends Controller
                         "timestamp" => "2026-05-21T10:30:00+00:00"
                     ]
                 )
-            )
+            ),
+            new OA\Response(response: 500, description: "Error interno del servidor")
         ]
     )]
     public function __invoke(): JsonResponse

@@ -1,0 +1,3419 @@
+{
+  "info": {
+    "_postman_id": "7e613a75-bbf7-490c-89d6-33849ef4704a",
+    "name": "EXAMEN_BUSTOS",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "15936207"
+  },
+  "item": [
+    {
+      "name": "Diagnostico",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/health",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "health"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Health Check (200)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/health",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "health"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.27.5"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.2.31"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 09 Jun 2026 19:41:43 GMT"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"online\",\n    \"service\": \"TodoCamisetas API\",\n    \"version\": \"1.0.0\",\n    \"timestamp\": \"2026-06-09T19:41:43+00:00\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Clientes",
+      "item": [
+        {
+          "name": "Listar Clientes",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/clients",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "clients"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Listar Clientes (200)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/clients",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "clients"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.27.5"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.2.31"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 09 Jun 2026 22:43:38 GMT"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"id\": 1,\n            \"nombre_comercial\": \"Tienda 90minutos\",\n            \"rut\": \"76111222-3\",\n            \"direccion\": \"Providencia, Santiago\",\n            \"categoria\": \"Preferencial\",\n            \"contacto_nombre\": \"Pedro Soto\",\n            \"contacto_correo\": \"pedro@90minutos.cl\",\n            \"porcentaje_oferta\": 15,\n            \"created_at\": \"2026-06-09T22:43:07.000000Z\",\n            \"updated_at\": \"2026-06-09T22:43:07.000000Z\",\n            \"deleted_at\": null\n        },\n        {\n            \"id\": 2,\n            \"nombre_comercial\": \"Tienda tdeportes\",\n            \"rut\": \"77987654-3\",\n            \"direccion\": \"Las Condes, Santiago\",\n            \"categoria\": \"Regular\",\n            \"contacto_nombre\": \"Francisca Silva\",\n            \"contacto_correo\": \"contacto@tdeportes.cl\",\n            \"porcentaje_oferta\": null,\n            \"created_at\": \"2026-06-09T22:43:08.000000Z\",\n            \"updated_at\": \"2026-06-09T22:43:08.000000Z\",\n            \"deleted_at\": null\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Registrar Cliente",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"nombre_comercial\": \"Chileno Deportivo Juvenil\",\r\n    \"rut\": \"98765432-1\",\r\n    \"direccion\": \"Av. Laureles 1234\",\r\n    \"categoria\": \"Preferencial\",\r\n    \"contacto_nombre\": \"Ramiro Contreras\",\r\n    \"contacto_correo\": \"chidepo@chilenodejuvenil.cl\",\r\n    \"porcentaje_oferta\": 12\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/clients",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "clients"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Registrar Cliente (201)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"nombre_comercial\": \"Chileno Deportivo Juvenil\",\r\n    \"rut\": \"98765432-1\",\r\n    \"direccion\": \"Av. Laureles 1234\",\r\n    \"categoria\": \"Preferencial\",\r\n    \"contacto_nombre\": \"Ramiro Contreras\",\r\n    \"contacto_correo\": \"chidepo@chilenodejuvenil.cl\",\r\n    \"porcentaje_oferta\": 12\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/clients",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "clients"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.27.5"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.2.31"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 09 Jun 2026 22:46:56 GMT"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": {\n        \"nombre_comercial\": \"Chileno Deportivo Juvenil\",\n        \"rut\": \"98765432-1\",\n        \"direccion\": \"Av. Laureles 1234\",\n        \"categoria\": \"Preferencial\",\n        \"contacto_nombre\": \"Ramiro Contreras\",\n        \"contacto_correo\": \"chidepo@chilenodejuvenil.cl\",\n        \"porcentaje_oferta\": 12,\n        \"updated_at\": \"2026-06-09T22:46:56.000000Z\",\n        \"created_at\": \"2026-06-09T22:46:56.000000Z\",\n        \"id\": 3\n    },\n    \"message\": \"Cliente creado exitosamente\"\n}"
+            },
+            {
+              "name": "Registrar Cliente (422 Dupe rut)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"nombre_comercial\": \"Chileno Deportivo Juvenil\",\r\n    \"rut\": \"98765432-1\",\r\n    \"direccion\": \"Av. Laureles 1234\",\r\n    \"categoria\": \"Preferencial\",\r\n    \"contacto_nombre\": \"Ramiro Contreras\",\r\n    \"contacto_correo\": \"chidepor@chilenodejuvenil.cl\",\r\n    \"porcentaje_oferta\": 12\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/clients",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "clients"
+                  ]
+                }
+              },
+              "status": "Unprocessable Content",
+              "code": 422,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.27.5"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.2.31"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 09 Jun 2026 22:45:39 GMT"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"message\": \"Error de validación\",\n    \"errors\": {\n        \"rut\": [\n            \"Este RUT ya está registrado.\"\n        ]\n    }\n}"
+            },
+            {
+              "name": "Registrar Cliente (422 Dupe email)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"nombre_comercial\": \"Chileno Deportivo Juvenil\",\r\n    \"rut\": \"98765532-1\",\r\n    \"direccion\": \"Av. Laureles 1234\",\r\n    \"categoria\": \"Preferencial\",\r\n    \"contacto_nombre\": \"Ramiro Contreras\",\r\n    \"contacto_correo\": \"chidepo@chilenodejuvenil.cl\",\r\n    \"porcentaje_oferta\": 12\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/clients",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "clients"
+                  ]
+                }
+              },
+              "status": "Unprocessable Content",
+              "code": 422,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.27.5"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.2.31"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 09 Jun 2026 22:47:26 GMT"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"message\": \"Error de validación\",\n    \"errors\": {\n        \"contacto_correo\": [\n            \"Este correo de contacto ya está registrado.\"\n        ]\n    }\n}"
+            },
+            {
+              "name": "Registrar Cliente (422 Dupe rut & email)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"nombre_comercial\": \"Chileno Deportivo Juvenil\",\r\n    \"rut\": \"98765432-1\",\r\n    \"direccion\": \"Av. Laureles 1234\",\r\n    \"categoria\": \"Preferencial\",\r\n    \"contacto_nombre\": \"Ramiro Contreras\",\r\n    \"contacto_correo\": \"chidepo@chilenodejuvenil.cl\",\r\n    \"porcentaje_oferta\": 12\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/clients",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "clients"
+                  ]
+                }
+              },
+              "status": "Unprocessable Content",
+              "code": 422,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.27.5"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.2.31"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 09 Jun 2026 22:44:59 GMT"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"message\": \"Error de validación\",\n    \"errors\": {\n        \"rut\": [\n            \"Este RUT ya está registrado.\"\n        ],\n        \"contacto_correo\": [\n            \"Este correo de contacto ya está registrado.\"\n        ]\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Listar Clientes por ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/clients/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "clients",
+                "1"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Listar Clientes por ID (200)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/clients/1",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "clients",
+                    "1"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.27.5"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.2.31"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 09 Jun 2026 22:48:22 GMT"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": {\n        \"id\": 1,\n        \"nombre_comercial\": \"Tienda 90minutos\",\n        \"rut\": \"76111222-3\",\n        \"direccion\": \"Providencia, Santiago\",\n        \"categoria\": \"Preferencial\",\n        \"contacto_nombre\": \"Pedro Soto\",\n        \"contacto_correo\": \"pedro@90minutos.cl\",\n        \"porcentaje_oferta\": 15,\n        \"created_at\": \"2026-06-09T22:46:42.000000Z\",\n        \"updated_at\": \"2026-06-09T22:46:42.000000Z\",\n        \"deleted_at\": null\n    }\n}"
+            },
+            {
+              "name": "Listar Clientes por ID (404 Not found)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/clients/9999",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "clients",
+                    "9999"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.27.5"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.2.31"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 09 Jun 2026 22:48:34 GMT"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"message\": \"Cliente no encontrado\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Actualizar Cliente",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"nombre_comercial\": \"Chileno Deportivo Juvenil de Juveniles\",\r\n    \"rut\": \"11111111-1\",\r\n    \"direccion\": \"Av. Laureles Dorados 1234\",\r\n    \"categoria\": \"Preferencial\",\r\n    \"contacto_nombre\": \"Ramiro Contreras Soto\",\r\n    \"contacto_correo\": \"chidepo@chilenodejuveniljuveniles.cl\",\r\n    \"porcentaje_oferta\": 8\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/clients/3",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "clients",
+                "3"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Actualizar Cliente (200)",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"nombre_comercial\": \"Chileno Deportivo Juvenil de Juveniles\",\r\n    \"rut\": \"11111111-1\",\r\n    \"direccion\": \"Av. Laureles Dorados 1234\",\r\n    \"categoria\": \"Preferencial\",\r\n    \"contacto_nombre\": \"Ramiro Contreras Soto\",\r\n    \"contacto_correo\": \"chidepo@chilenodejuveniljuveniles.cl\",\r\n    \"porcentaje_oferta\": 8\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/clients/3",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "clients",
+                    "3"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.27.5"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.2.31"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 09 Jun 2026 22:57:26 GMT"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": {\n        \"id\": 3,\n        \"nombre_comercial\": \"Chileno Deportivo Juvenil de Juveniles\",\n        \"rut\": \"11111111-1\",\n        \"direccion\": \"Av. Laureles Dorados 1234\",\n        \"categoria\": \"Preferencial\",\n        \"contacto_nombre\": \"Ramiro Contreras Soto\",\n        \"contacto_correo\": \"chidepo@chilenodejuveniljuveniles.cl\",\n        \"porcentaje_oferta\": 8,\n        \"created_at\": \"2026-06-09T22:46:56.000000Z\",\n        \"updated_at\": \"2026-06-09T22:57:26.000000Z\",\n        \"deleted_at\": null\n    },\n    \"message\": \"Cliente actualizado\"\n}"
+            },
+            {
+              "name": "Actualizar Cliente (422 correo inválido)",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"nombre_comercial\": \"Chileno Deportivo Juvenil de Juveniles\",\r\n    \"rut\": \"11111111-1\",\r\n    \"direccion\": \"Av. Laureles Dorados 1234\",\r\n    \"categoria\": \"Preferencial\",\r\n    \"contacto_nombre\": \"Ramiro Contreras Soto\",\r\n    \"contacto_correo\": \"chidepo\",\r\n    \"porcentaje_oferta\": 8\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/clients/3",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "clients",
+                    "3"
+                  ]
+                }
+              },
+              "status": "Unprocessable Content",
+              "code": 422,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.27.5"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.2.31"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 09 Jun 2026 23:03:04 GMT"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"message\": \"Error de validación\",\n    \"errors\": {\n        \"contacto_correo\": [\n            \"El campo contacto correo debe ser un correo válido.\"\n        ]\n    }\n}"
+            },
+            {
+              "name": "Actualizar Cliente (404 Not found)",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"nombre_comercial\": \"Sociedad Chilena de Futbol\",\r\n    \"rut\": \"12345543-1\",\r\n    \"direccion\": \"Av. Laureles Verdes 1234\",\r\n    \"categoria\": \"Preferencial\",\r\n    \"contacto_nombre\": \"Ramiro Contreras Soto\",\r\n    \"contacto_correo\": \"email@email.cl\",\r\n    \"porcentaje_oferta\": 8\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/clients/9999",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "clients",
+                    "9999"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.27.5"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.2.31"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 09 Jun 2026 23:06:51 GMT"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"message\": \"Cliente no encontrado\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Eliminar Cliente (softDelete)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/clients/3",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "clients",
+                "3"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Eliminar Cliente (409)",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/clients/1",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "clients",
+                    "1"
+                  ]
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.27.5"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.2.31"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Jun 2026 02:09:41 GMT"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"message\": \"No se puede eliminar el cliente porque tiene camisetas asociadas.\"\n}"
+            },
+            {
+              "name": "Eliminar Cliente (200)",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/clients/3",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "clients",
+                    "3"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.27.5"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.2.31"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Jun 2026 02:10:26 GMT"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Cliente eliminado exitosamente\"\n}"
+            },
+            {
+              "name": "Eliminar Cliente (404)",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/clients/9999",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "clients",
+                    "9999"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.27.5"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.2.31"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Jun 2026 02:10:52 GMT"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"message\": \"Cliente no encontrado\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Tallas",
+      "item": [
+        {
+          "name": "Listar Tallas",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/sizes",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "sizes"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Listar Tallas (200)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/sizes",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "sizes"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.27.5"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.2.31"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 09 Jun 2026 23:10:16 GMT"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"id\": 1,\n            \"nombre\": \"XS\",\n            \"created_at\": \"2026-06-09T22:46:42.000000Z\",\n            \"updated_at\": \"2026-06-09T22:46:42.000000Z\",\n            \"deleted_at\": null\n        },\n        {\n            \"id\": 2,\n            \"nombre\": \"S\",\n            \"created_at\": \"2026-06-09T22:46:42.000000Z\",\n            \"updated_at\": \"2026-06-09T22:46:42.000000Z\",\n            \"deleted_at\": null\n        },\n        {\n            \"id\": 3,\n            \"nombre\": \"M\",\n            \"created_at\": \"2026-06-09T22:46:42.000000Z\",\n            \"updated_at\": \"2026-06-09T22:46:42.000000Z\",\n            \"deleted_at\": null\n        },\n        {\n            \"id\": 4,\n            \"nombre\": \"L\",\n            \"created_at\": \"2026-06-09T22:46:42.000000Z\",\n            \"updated_at\": \"2026-06-09T22:46:42.000000Z\",\n            \"deleted_at\": null\n        },\n        {\n            \"id\": 5,\n            \"nombre\": \"XL\",\n            \"created_at\": \"2026-06-09T22:46:42.000000Z\",\n            \"updated_at\": \"2026-06-09T22:46:42.000000Z\",\n            \"deleted_at\": null\n        },\n        {\n            \"id\": 6,\n            \"nombre\": \"XXL\",\n            \"created_at\": \"2026-06-09T22:46:42.000000Z\",\n            \"updated_at\": \"2026-06-09T22:46:42.000000Z\",\n            \"deleted_at\": null\n        },\n        {\n            \"id\": 7,\n            \"nombre\": \"Única\",\n            \"created_at\": \"2026-06-09T22:46:42.000000Z\",\n            \"updated_at\": \"2026-06-09T22:46:42.000000Z\",\n            \"deleted_at\": null\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Registrar Talla",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"nombre\": \"TL\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/sizes",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "sizes"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Registrar Talla (201)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"nombre\": \"TL\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/sizes",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "sizes"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.27.5"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.2.31"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 09 Jun 2026 23:10:42 GMT"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": {\n        \"nombre\": \"TL\",\n        \"updated_at\": \"2026-06-09T23:10:42.000000Z\",\n        \"created_at\": \"2026-06-09T23:10:42.000000Z\",\n        \"id\": 8\n    },\n    \"message\": \"Talla creada exitosamente\"\n}"
+            },
+            {
+              "name": "Registrar Talla (422)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"nombre\": \"TL\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/sizes",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "sizes"
+                  ]
+                }
+              },
+              "status": "Unprocessable Content",
+              "code": 422,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.27.5"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.2.31"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 09 Jun 2026 23:10:53 GMT"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"message\": \"Error de validación\",\n    \"errors\": {\n        \"nombre\": [\n            \"Esta talla ya está registrada.\"\n        ]\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Listar Tallas por ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/sizes/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "sizes",
+                "1"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Listar Tallas por ID (200)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/sizes/8",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "sizes",
+                    "8"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.27.5"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.2.31"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 09 Jun 2026 23:11:28 GMT"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": {\n        \"id\": 8,\n        \"nombre\": \"TL\",\n        \"created_at\": \"2026-06-09T23:10:42.000000Z\",\n        \"updated_at\": \"2026-06-09T23:10:42.000000Z\",\n        \"deleted_at\": null\n    }\n}"
+            },
+            {
+              "name": "Listar Tallas por ID (404 Not found)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/sizes/9999",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "sizes",
+                    "9999"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.27.5"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.2.31"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 09 Jun 2026 23:11:43 GMT"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"message\": \"Talla no encontrada\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Actualizar Talla",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"nombre\": \"TLT\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/sizes/8",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "sizes",
+                "8"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Actualizar Talla (200)",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"nombre\": \"TLT\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/sizes/8",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "sizes",
+                    "8"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.27.5"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.2.31"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Jun 2026 00:46:15 GMT"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": {\n        \"id\": 8,\n        \"nombre\": \"TLT\",\n        \"created_at\": \"2026-06-09T23:10:42.000000Z\",\n        \"updated_at\": \"2026-06-10T00:46:15.000000Z\",\n        \"deleted_at\": null\n    },\n    \"message\": \"Talla actualizada\"\n}"
+            },
+            {
+              "name": "Actualizar Talla (404 Not found)",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"nombre\": \"TLT\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/sizes/9999",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "sizes",
+                    "9999"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.27.5"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.2.31"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Jun 2026 00:46:32 GMT"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"message\": \"Talla no encontrada\"\n}"
+            },
+            {
+              "name": "Actualizar Talla (422)",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"nombre\": 5\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/sizes/8",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "sizes",
+                    "8"
+                  ]
+                }
+              },
+              "status": "Unprocessable Content",
+              "code": 422,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.27.5"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.2.31"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Jun 2026 00:47:39 GMT"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"message\": \"Error de validación\",\n    \"errors\": {\n        \"nombre\": [\n            \"El campo nombre debe ser texto.\"\n        ]\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Eliminar Talla (softDelete)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/sizes/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "sizes",
+                "1"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Eliminar Talla (200)",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/sizes/7",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "sizes",
+                    "7"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.27.5"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.2.31"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Jun 2026 02:17:26 GMT"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Talla eliminada exitosamente\"\n}"
+            },
+            {
+              "name": "Eliminar Talla (404 Not found)",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/sizes/9999",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "sizes",
+                    "9999"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.27.5"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.2.31"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Jun 2026 02:11:53 GMT"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"message\": \"Talla no encontrada\"\n}"
+            },
+            {
+              "name": "Eliminar Talla (409)",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/sizes/1",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "sizes",
+                    "1"
+                  ]
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.27.5"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.2.31"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Jun 2026 02:11:27 GMT"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"message\": \"No se puede eliminar la talla porque hay camisetas asociadas a ella.\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Camisetas",
+      "item": [
+        {
+          "name": "Listar Camisetas",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/shirts",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "shirts"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Listar Camisetas (200)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/shirts",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "shirts"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.27.5"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.2.31"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Jun 2026 02:18:02 GMT"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"id\": 1,\n            \"cliente_id\": 1,\n            \"titulo\": \"Camiseta Titular Colo-Colo 2026\",\n            \"club\": \"Colo-Colo\",\n            \"pais\": \"Chile\",\n            \"tipo\": \"Local\",\n            \"color\": \"Blanco y Negro\",\n            \"precio\": 49990,\n            \"precio_oferta\": 39990,\n            \"detalles\": \"Edición campeonato nacional\",\n            \"codigo_producto\": \"CC-LOC-2026\",\n            \"created_at\": \"2026-06-10T02:09:08.000000Z\",\n            \"updated_at\": \"2026-06-10T02:09:08.000000Z\",\n            \"deleted_at\": null,\n            \"client\": {\n                \"id\": 1,\n                \"nombre_comercial\": \"Tienda 90minutos\",\n                \"rut\": \"76111222-3\",\n                \"direccion\": \"Providencia, Santiago\",\n                \"categoria\": \"Preferencial\",\n                \"contacto_nombre\": \"Pedro Soto\",\n                \"contacto_correo\": \"pedro@90minutos.cl\",\n                \"porcentaje_oferta\": 15,\n                \"created_at\": \"2026-06-10T02:09:08.000000Z\",\n                \"updated_at\": \"2026-06-10T02:09:08.000000Z\",\n                \"deleted_at\": null\n            },\n            \"sizes\": [\n                {\n                    \"id\": 2,\n                    \"nombre\": \"S\",\n                    \"created_at\": \"2026-06-10T02:09:08.000000Z\",\n                    \"updated_at\": \"2026-06-10T02:09:08.000000Z\",\n                    \"deleted_at\": null,\n                    \"pivot\": {\n                        \"shirt_id\": 1,\n                        \"size_id\": 2\n                    }\n                },\n                {\n                    \"id\": 3,\n                    \"nombre\": \"M\",\n                    \"created_at\": \"2026-06-10T02:09:08.000000Z\",\n                    \"updated_at\": \"2026-06-10T02:09:08.000000Z\",\n                    \"deleted_at\": null,\n                    \"pivot\": {\n                        \"shirt_id\": 1,\n                        \"size_id\": 3\n                    }\n                },\n                {\n                    \"id\": 4,\n                    \"nombre\": \"L\",\n                    \"created_at\": \"2026-06-10T02:09:08.000000Z\",\n                    \"updated_at\": \"2026-06-10T02:09:08.000000Z\",\n                    \"deleted_at\": null,\n                    \"pivot\": {\n                        \"shirt_id\": 1,\n                        \"size_id\": 4\n                    }\n                },\n                {\n                    \"id\": 5,\n                    \"nombre\": \"XL\",\n                    \"created_at\": \"2026-06-10T02:09:08.000000Z\",\n                    \"updated_at\": \"2026-06-10T02:09:08.000000Z\",\n                    \"deleted_at\": null,\n                    \"pivot\": {\n                        \"shirt_id\": 1,\n                        \"size_id\": 5\n                    }\n                }\n            ]\n        },\n        {\n            \"id\": 2,\n            \"cliente_id\": 2,\n            \"titulo\": \"Camiseta Visita Universidad de Chile 2026\",\n            \"club\": \"Universidad de Chile\",\n            \"pais\": \"Chile\",\n            \"tipo\": \"Visita\",\n            \"color\": \"Blanco\",\n            \"precio\": 45000,\n            \"precio_oferta\": null,\n            \"detalles\": \"Tela respirable DryFit\",\n            \"codigo_producto\": \"UCH-VIS-2026\",\n            \"created_at\": \"2026-06-10T02:09:08.000000Z\",\n            \"updated_at\": \"2026-06-10T02:09:08.000000Z\",\n            \"deleted_at\": null,\n            \"client\": {\n                \"id\": 2,\n                \"nombre_comercial\": \"Tienda tdeportes\",\n                \"rut\": \"77987654-3\",\n                \"direccion\": \"Las Condes, Santiago\",\n                \"categoria\": \"Regular\",\n                \"contacto_nombre\": \"Francisca Silva\",\n                \"contacto_correo\": \"contacto@tdeportes.cl\",\n                \"porcentaje_oferta\": null,\n                \"created_at\": \"2026-06-10T02:09:08.000000Z\",\n                \"updated_at\": \"2026-06-10T02:09:08.000000Z\",\n                \"deleted_at\": null\n            },\n            \"sizes\": [\n                {\n                    \"id\": 3,\n                    \"nombre\": \"M\",\n                    \"created_at\": \"2026-06-10T02:09:08.000000Z\",\n                    \"updated_at\": \"2026-06-10T02:09:08.000000Z\",\n                    \"deleted_at\": null,\n                    \"pivot\": {\n                        \"shirt_id\": 2,\n                        \"size_id\": 3\n                    }\n                },\n                {\n                    \"id\": 4,\n                    \"nombre\": \"L\",\n                    \"created_at\": \"2026-06-10T02:09:08.000000Z\",\n                    \"updated_at\": \"2026-06-10T02:09:08.000000Z\",\n                    \"deleted_at\": null,\n                    \"pivot\": {\n                        \"shirt_id\": 2,\n                        \"size_id\": 4\n                    }\n                },\n                {\n                    \"id\": 5,\n                    \"nombre\": \"XL\",\n                    \"created_at\": \"2026-06-10T02:09:08.000000Z\",\n                    \"updated_at\": \"2026-06-10T02:09:08.000000Z\",\n                    \"deleted_at\": null,\n                    \"pivot\": {\n                        \"shirt_id\": 2,\n                        \"size_id\": 5\n                    }\n                }\n            ]\n        },\n        {\n            \"id\": 3,\n            \"cliente_id\": 1,\n            \"titulo\": \"Camiseta Titular Real Madrid 2026\",\n            \"club\": \"Real Madrid\",\n            \"pais\": \"España\",\n            \"tipo\": \"Local\",\n            \"color\": \"Blanco y Dorado\",\n            \"precio\": 85000,\n            \"precio_oferta\": 70000,\n            \"detalles\": \"Versión auténtica jugador\",\n            \"codigo_producto\": \"RM-LOC-2026\",\n            \"created_at\": \"2026-06-10T02:09:08.000000Z\",\n            \"updated_at\": \"2026-06-10T02:09:08.000000Z\",\n            \"deleted_at\": null,\n            \"client\": {\n                \"id\": 1,\n                \"nombre_comercial\": \"Tienda 90minutos\",\n                \"rut\": \"76111222-3\",\n                \"direccion\": \"Providencia, Santiago\",\n                \"categoria\": \"Preferencial\",\n                \"contacto_nombre\": \"Pedro Soto\",\n                \"contacto_correo\": \"pedro@90minutos.cl\",\n                \"porcentaje_oferta\": 15,\n                \"created_at\": \"2026-06-10T02:09:08.000000Z\",\n                \"updated_at\": \"2026-06-10T02:09:08.000000Z\",\n                \"deleted_at\": null\n            },\n            \"sizes\": [\n                {\n                    \"id\": 1,\n                    \"nombre\": \"XS\",\n                    \"created_at\": \"2026-06-10T02:09:08.000000Z\",\n                    \"updated_at\": \"2026-06-10T02:09:08.000000Z\",\n                    \"deleted_at\": null,\n                    \"pivot\": {\n                        \"shirt_id\": 3,\n                        \"size_id\": 1\n                    }\n                },\n                {\n                    \"id\": 2,\n                    \"nombre\": \"S\",\n                    \"created_at\": \"2026-06-10T02:09:08.000000Z\",\n                    \"updated_at\": \"2026-06-10T02:09:08.000000Z\",\n                    \"deleted_at\": null,\n                    \"pivot\": {\n                        \"shirt_id\": 3,\n                        \"size_id\": 2\n                    }\n                },\n                {\n                    \"id\": 3,\n                    \"nombre\": \"M\",\n                    \"created_at\": \"2026-06-10T02:09:08.000000Z\",\n                    \"updated_at\": \"2026-06-10T02:09:08.000000Z\",\n                    \"deleted_at\": null,\n                    \"pivot\": {\n                        \"shirt_id\": 3,\n                        \"size_id\": 3\n                    }\n                },\n                {\n                    \"id\": 4,\n                    \"nombre\": \"L\",\n                    \"created_at\": \"2026-06-10T02:09:08.000000Z\",\n                    \"updated_at\": \"2026-06-10T02:09:08.000000Z\",\n                    \"deleted_at\": null,\n                    \"pivot\": {\n                        \"shirt_id\": 3,\n                        \"size_id\": 4\n                    }\n                },\n                {\n                    \"id\": 5,\n                    \"nombre\": \"XL\",\n                    \"created_at\": \"2026-06-10T02:09:08.000000Z\",\n                    \"updated_at\": \"2026-06-10T02:09:08.000000Z\",\n                    \"deleted_at\": null,\n                    \"pivot\": {\n                        \"shirt_id\": 3,\n                        \"size_id\": 5\n                    }\n                },\n                {\n                    \"id\": 6,\n                    \"nombre\": \"XXL\",\n                    \"created_at\": \"2026-06-10T02:09:08.000000Z\",\n                    \"updated_at\": \"2026-06-10T02:09:08.000000Z\",\n                    \"deleted_at\": null,\n                    \"pivot\": {\n                        \"shirt_id\": 3,\n                        \"size_id\": 6\n                    }\n                }\n            ]\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Registrar Camiseta",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"cliente_id\": 1,\r\n  \"titulo\": \"Camiseta DAKAR 2035\",\r\n  \"club\": \"Tricolor de Paine\",\r\n  \"pais\": \"Chile\",\r\n  \"tipo\": \"Local\",\r\n  \"color\": \"Amarillo\",\r\n  \"precio\": 57500,\r\n  \"precio_oferta\": 49500,\r\n  \"detalles\": \"Equipo juvenil de Paine\",\r\n  \"codigo_producto\": \"SUBDAK2035L\",\r\n  \"sizes_ids\": [\r\n    1,\r\n    2,\r\n    3\r\n  ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/shirts",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "shirts"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Registrar Camiseta (201)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"cliente_id\": 1,\r\n  \"titulo\": \"Camiseta DAKAR 2035\",\r\n  \"club\": \"Tricolor de Paine\",\r\n  \"pais\": \"Chile\",\r\n  \"tipo\": \"Local\",\r\n  \"color\": \"Amarillo\",\r\n  \"precio\": 57500,\r\n  \"precio_oferta\": 49500,\r\n  \"detalles\": \"Equipo juvenil de Paine\",\r\n  \"codigo_producto\": \"SUBDAK2035L\",\r\n  \"sizes_ids\": [\r\n    1,\r\n    2,\r\n    3\r\n  ]\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/shirts",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "shirts"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.27.5"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.2.31"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Jun 2026 02:42:52 GMT"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": {\n        \"cliente_id\": 1,\n        \"titulo\": \"Camiseta DAKAR 2035\",\n        \"club\": \"Tricolor de Paine\",\n        \"pais\": \"Chile\",\n        \"tipo\": \"Local\",\n        \"color\": \"Amarillo\",\n        \"precio\": 57500,\n        \"precio_oferta\": 49500,\n        \"detalles\": \"Equipo juvenil de Paine\",\n        \"codigo_producto\": \"SUBDAK2035L\",\n        \"updated_at\": \"2026-06-10T02:42:52.000000Z\",\n        \"created_at\": \"2026-06-10T02:42:52.000000Z\",\n        \"id\": 4,\n        \"sizes\": [\n            {\n                \"id\": 1,\n                \"nombre\": \"XS\",\n                \"created_at\": \"2026-06-10T02:41:23.000000Z\",\n                \"updated_at\": \"2026-06-10T02:41:23.000000Z\",\n                \"deleted_at\": null,\n                \"pivot\": {\n                    \"shirt_id\": 4,\n                    \"size_id\": 1\n                }\n            },\n            {\n                \"id\": 2,\n                \"nombre\": \"S\",\n                \"created_at\": \"2026-06-10T02:41:23.000000Z\",\n                \"updated_at\": \"2026-06-10T02:41:23.000000Z\",\n                \"deleted_at\": null,\n                \"pivot\": {\n                    \"shirt_id\": 4,\n                    \"size_id\": 2\n                }\n            },\n            {\n                \"id\": 3,\n                \"nombre\": \"M\",\n                \"created_at\": \"2026-06-10T02:41:23.000000Z\",\n                \"updated_at\": \"2026-06-10T02:41:23.000000Z\",\n                \"deleted_at\": null,\n                \"pivot\": {\n                    \"shirt_id\": 4,\n                    \"size_id\": 3\n                }\n            }\n        ]\n    },\n    \"message\": \"Camiseta creada exitosamente\"\n}"
+            },
+            {
+              "name": "Registrar Camiseta (422)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"cliente_id\": 1,\r\n  \"titulo\": \"Camiseta DAKAR 2035\",\r\n  \"club\": \"Tricolor de Paine\",\r\n  \"pais\": \"Chile\",\r\n  \"tipo\": \"Local\",\r\n  \"color\": \"Amarillo\",\r\n  \"precio\": 57500,\r\n  \"precio_oferta\": 49500,\r\n  \"detalles\": \"Equipo juvenil de Paine\",\r\n  \"codigo_producto\": \"SUBDAK2035L\",\r\n  \"sizes_ids\": [\r\n    1,\r\n    2,\r\n    3\r\n  ]\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/shirts",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "shirts"
+                  ]
+                }
+              },
+              "status": "Unprocessable Content",
+              "code": 422,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.27.5"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.2.31"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Jun 2026 02:43:21 GMT"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"message\": \"Error de validación\",\n    \"errors\": {\n        \"codigo_producto\": [\n            \"Este código de producto ya está registrado.\"\n        ]\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Listar Camisetas por ID (precio_final)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/shirts/1?client_id=1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "shirts",
+                "1"
+              ],
+              "query": [
+                {
+                  "key": "client_id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Listar Camisetas por ID (200-Preferencial)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/shirts/1?client_id=1",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "shirts",
+                    "1"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.27.5"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.2.31"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Jun 2026 02:24:56 GMT"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": {\n        \"id\": 1,\n        \"titulo\": \"Camiseta Titular Colo-Colo 2026\",\n        \"club\": \"Colo-Colo\",\n        \"pais\": \"Chile\",\n        \"tipo\": \"Local\",\n        \"color\": \"Blanco y Negro\",\n        \"detalles\": \"Edición campeonato nacional\",\n        \"codigo_producto\": \"CC-LOC-2026\",\n        \"tallas_disponibles\": \"S,M,L,XL\",\n        \"precio_final\": 39990,\n        \"cliente_consultor\": {\n            \"id\": 1,\n            \"categoria\": \"Preferencial\"\n        }\n    }\n}"
+            },
+            {
+              "name": "Listar Camisetas por ID (200-Regular)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/shirts/1?client_id=2",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "shirts",
+                    "1"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "2"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.27.5"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.2.31"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Jun 2026 02:25:14 GMT"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": {\n        \"id\": 1,\n        \"titulo\": \"Camiseta Titular Colo-Colo 2026\",\n        \"club\": \"Colo-Colo\",\n        \"pais\": \"Chile\",\n        \"tipo\": \"Local\",\n        \"color\": \"Blanco y Negro\",\n        \"detalles\": \"Edición campeonato nacional\",\n        \"codigo_producto\": \"CC-LOC-2026\",\n        \"tallas_disponibles\": \"S,M,L,XL\",\n        \"precio_final\": 49990,\n        \"cliente_consultor\": {\n            \"id\": 2,\n            \"categoria\": \"Regular\"\n        }\n    }\n}"
+            },
+            {
+              "name": "Listar Camisetas por ID (400-noClientID)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/shirts/1?client_id=",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "shirts",
+                    "1"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": ""
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.27.5"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.2.31"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Jun 2026 02:25:34 GMT"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"message\": \"El parámetro client_id es obligatorio en la consulta.\"\n}"
+            },
+            {
+              "name": "Listar Camisetas por ID (404 Not found)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/shirts/1?client_id=5",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "shirts",
+                    "1"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "5"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.27.5"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.2.31"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Jun 2026 02:30:21 GMT"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"message\": \"Cliente no encontrado.\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Actualizar Camiseta",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"cliente_id\": 1,\r\n  \"titulo\": \"Camiseta DAKAR 2035\",\r\n  \"club\": \"Tricolor de Paine\",\r\n  \"pais\": \"Chile\",\r\n  \"tipo\": \"Local\",\r\n  \"color\": \"Fucsia\",\r\n  \"precio\": 57500,\r\n  \"precio_oferta\": 49500,\r\n  \"detalles\": \"Equipo juvenil de Paine\",\r\n  \"codigo_producto\": \"SUBDAK2035L\",\r\n  \"sizes_ids\": [\r\n    1,\r\n    2,\r\n    3\r\n  ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/shirts/4",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "shirts",
+                "4"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Actualizar Camiseta (200)",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"cliente_id\": 1,\r\n  \"titulo\": \"Camiseta DAKAR 2035\",\r\n  \"club\": \"Tricolor de Paine\",\r\n  \"pais\": \"Chile\",\r\n  \"tipo\": \"Local\",\r\n  \"color\": \"Fucsia\",\r\n  \"precio\": 57500,\r\n  \"precio_oferta\": 49500,\r\n  \"detalles\": \"Equipo juvenil de Paine\",\r\n  \"codigo_producto\": \"SUBDAK2035L\",\r\n  \"sizes_ids\": [\r\n    1,\r\n    2,\r\n    3\r\n  ]\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/shirts/4",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "shirts",
+                    "4"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.27.5"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.2.31"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Jun 2026 02:51:18 GMT"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": {\n        \"id\": 4,\n        \"cliente_id\": 1,\n        \"titulo\": \"Camiseta DAKAR 2035\",\n        \"club\": \"Tricolor de Paine\",\n        \"pais\": \"Chile\",\n        \"tipo\": \"Local\",\n        \"color\": \"Fucsia\",\n        \"precio\": 57500,\n        \"precio_oferta\": 49500,\n        \"detalles\": \"Equipo juvenil de Paine\",\n        \"codigo_producto\": \"SUBDAK2035L\",\n        \"created_at\": \"2026-06-10T02:42:52.000000Z\",\n        \"updated_at\": \"2026-06-10T02:51:18.000000Z\",\n        \"deleted_at\": null,\n        \"sizes\": [\n            {\n                \"id\": 1,\n                \"nombre\": \"XS\",\n                \"created_at\": \"2026-06-10T02:41:23.000000Z\",\n                \"updated_at\": \"2026-06-10T02:41:23.000000Z\",\n                \"deleted_at\": null,\n                \"pivot\": {\n                    \"shirt_id\": 4,\n                    \"size_id\": 1\n                }\n            },\n            {\n                \"id\": 2,\n                \"nombre\": \"S\",\n                \"created_at\": \"2026-06-10T02:41:23.000000Z\",\n                \"updated_at\": \"2026-06-10T02:41:23.000000Z\",\n                \"deleted_at\": null,\n                \"pivot\": {\n                    \"shirt_id\": 4,\n                    \"size_id\": 2\n                }\n            },\n            {\n                \"id\": 3,\n                \"nombre\": \"M\",\n                \"created_at\": \"2026-06-10T02:41:23.000000Z\",\n                \"updated_at\": \"2026-06-10T02:41:23.000000Z\",\n                \"deleted_at\": null,\n                \"pivot\": {\n                    \"shirt_id\": 4,\n                    \"size_id\": 3\n                }\n            }\n        ]\n    },\n    \"message\": \"Camiseta actualizada\"\n}"
+            },
+            {
+              "name": "Actualizar Camiseta (404 Not found)",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"cliente_id\": 1,\r\n  \"titulo\": \"Camiseta DAKAR 2035\",\r\n  \"club\": \"Tricolor de Paine\",\r\n  \"pais\": \"Chile\",\r\n  \"tipo\": \"Local\",\r\n  \"color\": \"Fucsia\",\r\n  \"precio\": 57500,\r\n  \"precio_oferta\": 49500,\r\n  \"detalles\": \"Equipo juvenil de Paine\",\r\n  \"codigo_producto\": \"SUBDAK2035LE\",\r\n  \"sizes_ids\": [\r\n    1,\r\n    2,\r\n    3\r\n  ]\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/shirts/9999",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "shirts",
+                    "9999"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.27.5"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.2.31"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Jun 2026 02:52:16 GMT"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"message\": \"Camiseta no encontrada\"\n}"
+            },
+            {
+              "name": "Actualizar Camiseta (422)",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"cliente_id\": 1,\r\n  \"titulo\": \"Camiseta DAKAR 2035\",\r\n  \"club\": \"Tricolor de Paine\",\r\n  \"pais\": \"Chile\",\r\n  \"tipo\": \"Local\",\r\n  \"color\": \"Fucsia\",\r\n  \"precio\": \"x\",\r\n  \"precio_oferta\": 49500,\r\n  \"detalles\": \"Equipo juvenil de Paine\",\r\n  \"codigo_producto\": \"SUBDAK2035L\",\r\n  \"sizes_ids\": [\r\n    1,\r\n    2,\r\n    3\r\n  ]\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/shirts/4",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "shirts",
+                    "4"
+                  ]
+                }
+              },
+              "status": "Unprocessable Content",
+              "code": 422,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.27.5"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.2.31"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Jun 2026 02:52:40 GMT"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"message\": \"Error de validación\",\n    \"errors\": {\n        \"precio\": [\n            \"El campo precio debe ser un número entero.\"\n        ]\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Eliminar Camiseta (softDelete)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/shirts/4",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "shirts",
+                "4"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Eliminar Camiseta (200)",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/shirts/4",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "shirts",
+                    "4"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.27.5"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.2.31"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Jun 2026 02:53:11 GMT"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Camiseta eliminada exitosamente\"\n}"
+            },
+            {
+              "name": "Eliminar Camiseta (404)",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/shirts/9999",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "shirts",
+                    "9999"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.27.5"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.2.31"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Jun 2026 02:54:23 GMT"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"message\": \"Camiseta no encontrada\"\n}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
