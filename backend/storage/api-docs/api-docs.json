@@ -284,6 +284,9 @@
                     "201": {
                         "description": "Camiseta creada"
                     },
+                    "200": {
+                        "description": "Camiseta restaurada y actualizada exitosamente"
+                    },
                     "422": {
                         "description": "Errores de validación"
                     },
@@ -527,6 +530,9 @@
                 "responses": {
                     "201": {
                         "description": "Talla creada"
+                    },
+                    "200": {
+                        "description": "Talla restaurada exitosamente"
                     },
                     "422": {
                         "description": "Errores de validación"

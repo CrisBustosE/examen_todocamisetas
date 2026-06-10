@@ -50,6 +50,7 @@ class SizeController extends Controller
         requestBody: new OA\RequestBody(required: true, content: new OA\JsonContent(ref: "#/components/schemas/SizeInput")),
         responses: [
             new OA\Response(response: 201, description: "Talla creada"),
+            new OA\Response(response: 200, description: "Talla restaurada exitosamente"),
             new OA\Response(response: 422, description: "Errores de validación"),
             new OA\Response(response: 500, description: "Error interno del servidor")
         ]
