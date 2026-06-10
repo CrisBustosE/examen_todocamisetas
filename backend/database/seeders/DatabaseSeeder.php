@@ -16,6 +16,8 @@ class DatabaseSeeder extends Seeder
         // Seedeo de tallas cómunes de la industria: 'XS', 'S', 'M', 'L', 'XL', 'XXL', 'Única'.
         $this->call([
             SizeSeeder::class,
+            ClientSeeder::class, // Sedeo de los 2 principales clientes del caso
+            ShirtSeeder::class, // Sedeo de algunas camisetas
         ]);
     }
 }

@@ -20,7 +20,8 @@ class ShirtController extends Controller
         summary: "Listar todas las camisetas",
         tags: ["Camisetas"],
         responses: [
-            new OA\Response(response: 200, description: "Listado exitoso")
+            new OA\Response(response: 200, description: "Listado exitoso"),
+            new OA\Response(response: 500, description: "Error interno del servidor")
         ]
     )]
     public function index(): JsonResponse
@@ -70,10 +71,7 @@ class ShirtController extends Controller
                     ]
                 )
             ),
-            new OA\Response(
-                response: 500,
-                description: "Error de servidor"
-            )
+            new OA\Response(response: 500, description: "Error interno del servidor")
         ]
     )]
     public function byClient(string $id): JsonResponse
@@ -98,7 +96,8 @@ class ShirtController extends Controller
         requestBody: new OA\RequestBody(required: true, content: new OA\JsonContent(ref: "#/components/schemas/ShirtInput")),
         responses: [
             new OA\Response(response: 201, description: "Camiseta creada"),
-            new OA\Response(response: 422, description: "Errores de validación")
+            new OA\Response(response: 422, description: "Errores de validación"),
+            new OA\Response(response: 500, description: "Error interno del servidor")
         ]
     )]
     public function store(Request $request): JsonResponse
@@ -118,7 +117,7 @@ class ShirtController extends Controller
                 'codigo_producto' => 'required|string|max:50|unique:shirts,codigo_producto,NULL,id,deleted_at,NULL',
                 'sizes_ids'       => 'required|array',
                 'sizes_ids.*'     => 'exists:sizes,id'
-            ], [
+            ], [ // Mensajes personalizados
                 'cliente_id.required'          => 'El cliente es obligatorio.',
                 'cliente_id.exists'            => 'El cliente especificado no existe.',
                 'titulo.required'              => 'El título de la camiseta es obligatorio.',
@@ -187,7 +186,8 @@ class ShirtController extends Controller
         responses: [
             new OA\Response(response: 200, description: "Camiseta con precio calculado"),
             new OA\Response(response: 400, description: "Falta parámetro client_id"),
-            new OA\Response(response: 404, description: "Camiseta o cliente no encontrado")
+            new OA\Response(response: 404, description: "Camiseta o cliente no encontrado"),
+            new OA\Response(response: 500, description: "Error interno del servidor")
         ]
     )]
     public function show(Request $request, string $id): JsonResponse
@@ -219,7 +219,10 @@ class ShirtController extends Controller
         parameters: [new OA\Parameter(name: "id", in: "path", required: true, schema: new OA\Schema(type: "integer"))],
         requestBody: new OA\RequestBody(required: true, content: new OA\JsonContent(ref: "#/components/schemas/ShirtInput")),
         responses: [
-            new OA\Response(response: 200, description: "Camiseta actualizada")
+            new OA\Response(response: 200, description: "Camiseta actualizada"),
+            new OA\Response(response: 404, description: "Camiseta no encontrada"),
+            new OA\Response(response: 422, description: "Error de validación"),
+            new OA\Response(response: 500, description: "Error interno del servidor")
         ]
     )]
     public function update(Request $request, string $id): JsonResponse
@@ -241,6 +244,18 @@ class ShirtController extends Controller
                 'codigo_producto' => 'sometimes|required|string|unique:shirts,codigo_producto,' . $id . '|max:50',
                 'sizes_ids' => 'sometimes|required|array',
                 'sizes_ids.*' => 'exists:sizes,id'
+            ], [ // Mensajes personalizados
+                'required' => 'El campo :attribute es obligatorio.',
+                'string'   => 'El campo :attribute debe ser texto.',
+                'max'      => 'El campo :attribute excede el largo permitido.',
+                'integer'  => 'El campo :attribute debe ser un número entero.',
+                'min'      => 'El campo :attribute no puede ser negativo.',
+                'exists'   => 'El registro seleccionado para :attribute no es válido o no existe en la base de datos.',
+                'unique'   => 'El valor de :attribute ya se encuentra registrado.',
+                'array'    => 'El campo :attribute debe ser enviado como un arreglo de datos.',
+            ], [
+                'sizes_ids'   => 'tallas',
+                'sizes_ids.*' => 'talla seleccionada',
             ]);
 
             $shirt->update(collect($validated)->except('sizes_ids')->toArray());
@@ -271,7 +286,9 @@ class ShirtController extends Controller
         tags: ["Camisetas"],
         parameters: [new OA\Parameter(name: "id", in: "path", required: true, schema: new OA\Schema(type: "integer"))],
         responses: [
-            new OA\Response(response: 200, description: "Camiseta eliminada")
+            new OA\Response(response: 200, description: "Camiseta eliminada"),
+            new OA\Response(response: 404, description: "Camiseta no encontrada"),
+            new OA\Response(response: 500, description: "Error interno del servidor")
         ]
     )]
     public function destroy(string $id): JsonResponse
