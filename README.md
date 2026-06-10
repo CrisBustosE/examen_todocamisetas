@@ -427,11 +427,11 @@ Todos los endpoints siguen el mismo formato de respuesta JSON:
 
 ## Colección Postman
 
-Se incluye el archivo `TodoCamisetas_API.postman_collection.json` en la raíz del proyecto. Para importarla:
+Se incluye el archivo `EXAMEN_BUSTOS.postman_collection.json` en la raíz del proyecto. Para importarla:
 
 1. Abrir Postman.
 2. Ir a **File > Import**.
-3. Seleccionar el archivo `TodoCamisetas_API.postman_collection.json`.
+3. Seleccionar el archivo `EXAMEN_BUSTOS.postman_collection.json`.
 4. La colección incluye ejemplos de request y response para todos los endpoints, incluyendo casos de error.
 
 La variable `{{base_url}}` de la colección debe apuntar a `http://localhost:8080/api/v1`.
