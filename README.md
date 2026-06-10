@@ -38,8 +38,13 @@ El sistema permite gestionar el catálogo de camisetas, la cartera de clientes y
 
 El proyecto sigue la arquitectura MVC estándar de Laravel, separando responsabilidades de forma clara entre rutas, controladores, modelos y configuración.
 
+### Modelo Relacional (DER)
+![Diagrama Entidad-Relación](./backend/docs/DER_TodoCamisetas.png)
+
+### Estructura de Directorios
+![Estructura de Directorios TodoCamisetas](./backend/docs/Estructura_Directorios.png)
 ```
-todocamisetas-api/
+examen_todocamisetas/
 │
 ├── app/
 │   ├── Http/
