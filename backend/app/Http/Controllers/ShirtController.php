@@ -96,6 +96,7 @@ class ShirtController extends Controller
         requestBody: new OA\RequestBody(required: true, content: new OA\JsonContent(ref: "#/components/schemas/ShirtInput")),
         responses: [
             new OA\Response(response: 201, description: "Camiseta creada"),
+            new OA\Response(response: 200, description: "Camiseta restaurada y actualizada exitosamente"),
             new OA\Response(response: 422, description: "Errores de validación"),
             new OA\Response(response: 500, description: "Error interno del servidor")
         ]
