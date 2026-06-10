@@ -67,7 +67,9 @@ todocamisetas-api/
 │   │   └── ..._create_shirt_size_table.php   # Tabla pivote many-to-many con FK y cascada
 │   └── seeders/
 │       ├── DatabaseSeeder.php
-│       └── SizeSeeder.php                    # Siembra tallas estándar (XS, S, M, L, XL, XXL, Única)
+│       ├── SizeSeeder.php                    # Siembra tallas estándar (XS, S, M, L, XL, XXL, Única)
+│       ├── ClientSeeder.php                  # Siembra 2 clientes principales ("Tienda 90minutos" (Preferencial, ID 1) y "Tienda tdeportes" (Regular, ID 2)).
+│       └── ShirtSeeder.php                   # Siembra 3 Camisetas (pre configuradas con y sin ofertas para probar la regla de negocio)
 │
 ├── routes/
 │   └── api.php                         # Todas las rutas RESTful versionadas bajo /api/v1
@@ -180,7 +182,7 @@ docker compose exec app chmod -R 777 storage bootstrap/cache
 # 7. Ejecutar migraciones y sembrar datos iniciales (:fresh para quitar residuos o proyectos previos)
 docker compose exec app php artisan migrate:fresh --seed
 ```
-* **El seeder crea automáticamente las tallas estándar: `XS`, `S`, `M`, `L`, `XL`, `XXL` y `Única`.**
+* **El seeder crea automáticamente las tallas estándar, los 2 clientes principales y 3 camisetas pre configuradas.**
 ```bash
 # 8. Generar documentación Swagger
 docker compose exec app php artisan l5-swagger:generate
